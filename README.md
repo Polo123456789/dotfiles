@@ -36,5 +36,5 @@ Y luego instalamos el paquete con la opción `--adopt`
 `cp`. (Ejemplo con la configuracion de `synth-shell`)
 
 ```
-cp .config/synth-shell/ dotfiles/synth-shell/ --parents -
+cp .config/synth-shell/ dotfiles/synth-shell/ --parents -r
 ```
