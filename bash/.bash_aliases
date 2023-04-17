@@ -13,3 +13,9 @@ save_current_dir() {
 back() {
     cd "$ps_old_dir"
 }
+
+from_history() {
+    local cmd="$(history | fzf | awk '{$1=""; print $0}')"
+    echo $cmd
+    $cmd
+}
