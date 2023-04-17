@@ -17,5 +17,6 @@ back() {
 from_history() {
     local cmd="$(history | fzf | awk '{$1=""; print $0}')"
     echo $cmd
+    history -s "$cmd"
     $cmd
 }

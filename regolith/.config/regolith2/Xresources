@@ -2,3 +2,4 @@ regolith.wallpaper.file:
 regolith.wallpaper.color.primary: 
 
 i3-wm.gaps.inner.size: 15
+i3-wm.bar.position: top
