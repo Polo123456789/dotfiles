@@ -5,6 +5,7 @@ alias ps-server="ssh benisa-personal"
 alias ps-server-remoto="ssh benisa-personal-remoto"
 alias fc="fc -e nvim"
 alias vim="nvim"
+alias ..="cd .."
 
 save_current_dir() {
     ps_old_dir=$(pwd)
@@ -15,7 +16,7 @@ back() {
 }
 
 from_history() {
-    local cmd="$(history | fzf | awk '{$1=""; print $0}')"
+    local cmd="$(history | awk '{$1=""; print $0}' | sort | uniq |fzf)"
     echo $cmd
     history -s "$cmd"
     $cmd
