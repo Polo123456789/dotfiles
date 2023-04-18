@@ -21,3 +21,7 @@ from_history() {
     history -s "$cmd"
     $cmd
 }
+
+git_home() {
+    cd $(git rev-parse --show-toplevel)
+}
