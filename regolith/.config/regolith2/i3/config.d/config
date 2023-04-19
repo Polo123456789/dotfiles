@@ -1,4 +1,5 @@
 exec nitrogen --restore
+exec numlockx on
 
 bindsym $mod+m exec --no-startup-id "/home/pablo/scripts/change-kb-layout.sh"
 bindsym $mod+s exec gnome-screenshot -i
