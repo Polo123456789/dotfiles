@@ -1,0 +1,13 @@
+# Formato:
+# 
+# (Tipo)<Donde>Descripcion
+# 
+# Tipos:
+# 
+#     (+) Nuevo
+#     (-) Correccion de Errores
+#     (~) Refactorizacion
+#     (=) Cambio trivial
+#     (*) Cambio a al API
+# 
+# `Donde` es opcional

@@ -1,0 +1,10 @@
+[user]
+	email = pabsan02@gmail.com
+	name = Polo123456789
+	editor = nvim
+[core]
+	editor = nvim
+[init]
+	defaultBranch = master
+[commit]
+	template = ~/.config/git/commit-message-template
