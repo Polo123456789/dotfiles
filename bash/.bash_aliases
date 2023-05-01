@@ -6,6 +6,8 @@ alias ps-server-remoto="ssh benisa-personal-remoto"
 alias fc="fc -e nvim"
 alias vim="nvim"
 alias ..="cd .."
+alias today="date -Idate"
+alias today-entry="nvim $(date -Idate).md"
 
 save_current_dir() {
     ps_old_dir=$(pwd)
@@ -19,7 +21,7 @@ from_history() {
     local cmd="$(history | awk '{$1=""; print $0}' | sort | uniq |fzf)"
     echo $cmd
     history -s "$cmd"
-    $cmd
+    eval $cmd
 }
 
 git_home() {
