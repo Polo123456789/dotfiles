@@ -1,4 +1,3 @@
-alias apt="nala"
 alias search-process="ps -ax | grep"
 alias exi="exit"
 alias ps-server="ssh benisa-personal"
