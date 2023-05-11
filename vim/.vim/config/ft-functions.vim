@@ -1,4 +1,4 @@
-autocmd FileType html,tsx,jsx,vue,php setlocal colorcolumn=120 textwidth=0
+autocmd FileType html,tsx,jsx,vue,php,js,ts setlocal colorcolumn=120 textwidth=0
 
 " UTF para .org
 function s:setEncodingUTF()

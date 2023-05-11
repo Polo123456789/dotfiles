@@ -30,5 +30,6 @@ Plug 'mhinz/vim-startify'
 Plug 'Jorengarenar/miniSnip'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'prisma/vim-prisma'
 
 call plug#end()

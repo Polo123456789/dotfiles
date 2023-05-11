@@ -37,7 +37,7 @@ let g:startify_custom_header = [
 let g:indentLine_char = '|'
 
 " NERDTree
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 "au VimEnter *  NERDTree
 autocmd VimEnter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
