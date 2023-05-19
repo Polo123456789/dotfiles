@@ -3,7 +3,7 @@ exec numlockx on
 exec flameshot
 
 bindsym $mod+m exec --no-startup-id "/home/pablo/scripts/change-kb-layout.sh"
-bindsym $mod+s exec gnome-screenshot -i
+bindsym $mod+s exec flameshot gui
 
 smart_gaps off
 
