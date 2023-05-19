@@ -34,3 +34,8 @@ nnoremap <leader>Gc :Goyo<CR>
 
 " Repeat
 nnoremap <silent> zG zG:silent! call repeat#set("zG", v:count)<CR>
+
+" Copilot
+nnoremap <leader>cp :Copilot panel<CR>
+nnoremap <leader>cr :Copilot restart<CR>
+nnoremap <leader>cs :Copilot status<CR>

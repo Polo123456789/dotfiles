@@ -31,5 +31,6 @@ Plug 'Jorengarenar/miniSnip'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'prisma/vim-prisma'
+Plug 'github/copilot.vim'
 
 call plug#end()
