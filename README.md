@@ -9,7 +9,7 @@ Uso
 ```sh
 # Clonar el repositorio a $HOME/dotfiles
 cd dotfiles
-stow <paquete>
+stow --no-folding <paquete>
 ```
 
 Agregar configuraciones existentes
