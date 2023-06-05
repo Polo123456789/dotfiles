@@ -38,3 +38,21 @@ Y luego instalamos el paquete con la opción `--adopt`
 ```
 cp .config/synth-shell/ dotfiles/synth-shell/ --parents -r
 ```
+
+Bash
+====
+
+Para instalar bash, asegurese de que en el bashrc este el siguiente codigo:
+
+```sh
+if [ -d "$HOME/.bashrc.d" ]
+then
+    for file in $HOME/.bashrc.d/*
+    do
+        if [ -r $file ]; then
+            source $file
+        fi
+    done
+    unset file
+fi
+```
