@@ -1,6 +1,5 @@
 exec numlockx on
 exec flameshot
-exec /home/pablo/scripts/i3-startup-apps.sh
 exec nitrogen --restore
 
 bindsym $mod+m exec --no-startup-id "/home/pablo/scripts/change-kb-layout.sh"
