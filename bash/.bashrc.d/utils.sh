@@ -14,3 +14,6 @@ from_history() {
     eval $cmd
 }
 
+fzff () {
+    fzf -i < $1
+}
