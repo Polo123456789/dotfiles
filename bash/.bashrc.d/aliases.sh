@@ -14,5 +14,5 @@ alias today-entry="nvim $(date -Idate).md"
 
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-alias persist-tmp="cp -r ~/tmp/* ~/.persist-tmp/"
-alias restore-tmp="cp -r ~/.persist-tmp/* ~/tmp/"
+alias persist-tmp="mv -r ~/tmp/* ~/.persist-tmp/"
+alias restore-tmp="mv -r ~/.persist-tmp/* ~/tmp/"

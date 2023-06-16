@@ -1,10 +1,5 @@
-# These two are here only because of muscle memory, pushd and popd are better
-save_current_dir() {
-    ps_old_dir=$(pwd)
-}
-
 back() {
-    cd "$ps_old_dir"
+    cd "$OLDPWD"
 }
 
 from_history() {
