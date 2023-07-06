@@ -16,3 +16,5 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias persist-tmp="mv -r ~/tmp/* ~/.persist-tmp/"
 alias restore-tmp="mv -r ~/.persist-tmp/* ~/tmp/"
+
+alias rds="rclone-drive-sync"
