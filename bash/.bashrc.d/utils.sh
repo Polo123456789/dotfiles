@@ -2,7 +2,7 @@ back() {
     cd "$OLDPWD"
 }
 
-from_history() {
+from-history() {
     local cmd="$(history | awk '{$1=""; print $0}' | sort | uniq |fzf)"
     echo $cmd
     history -s "$cmd"
@@ -11,4 +11,8 @@ from_history() {
 
 fzff () {
     fzf -i < $1
+}
+
+notify-at() {
+    echo notify-send -u critical "$2" | at "$1"
 }
