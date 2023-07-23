@@ -18,3 +18,5 @@ alias persist-tmp="mv ~/tmp/* ~/.persist-tmp/"
 alias restore-tmp="mv ~/.persist-tmp/* ~/tmp/"
 
 alias rds="rclone-drive-sync"
+
+alias select-date="zenity --calendar --date-format='%Y-%m-%d'"
