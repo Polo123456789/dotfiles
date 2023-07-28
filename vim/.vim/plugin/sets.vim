@@ -43,16 +43,17 @@ set nohlsearch
 
 set conceallevel=0
 "set cursorline
-
-"set exrc
+"
+""set exrc
 "set secure
-
-" Para usar el tema en la terminal
+"
+"" Para usar el tema en la terminal
 if (has("termguicolors"))
     set termguicolors
     colorscheme wombat
 endif
 
 "if (has("win32"))
-"    set shell=powershell.exe
+""    set shell=powershell.exe
 "endif
+"
