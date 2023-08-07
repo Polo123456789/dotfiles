@@ -1,1 +1,1 @@
-nnoremap <buffer> <leader>gf f(l"zyi(:e<Space><C-r>z<Enter>
+nnoremap <buffer> <leader>gf F[f(l"zyi(:e<Space><C-r>z<Enter>
