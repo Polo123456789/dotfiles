@@ -5,7 +5,7 @@ _dotfiles() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    base_opts="stow unstow add commit push pull status log diff"
+    base_opts="stow unstow adopt add commit push pull status log diff"
     stow_opts=$(ls -d ${dotfiles_dir}/*/ | xargs -n1 basename)
 
 
@@ -14,7 +14,7 @@ _dotfiles() {
         return 0
     fi
 
-    if [[ ${prev} == "stow" ]] || [[ ${prev} == "unstow" ]] ; then
+    if [[ ${prev} == "stow" ]] || [[ ${prev} == "unstow" ]] || [[ ${prev} == "adopt" ]] ; then
         COMPREPLY=( $(compgen -W "$stow_opts" -- ${cur}) )
         return 0
     fi
@@ -22,6 +22,7 @@ _dotfiles() {
     if [[ ${prev} == "add" ]] ; then
         cd ${dotfiles_dir}
         _filedir
+        cd $OLDPWD
         return 0
     fi
 }
