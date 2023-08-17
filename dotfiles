@@ -1,0 +1,25 @@
+#!/bin/bash
+
+dotfiles_dir="$HOME/dotfiles"
+
+dotfiles-git() {
+  git --git-dir="$dotfiles_dir/.git" --work-tree="$dotfiles_dir" "$@"
+}
+
+dotfiles-stow() {
+  stow -t "$HOME" -d "$dotfiles_dir" "$@"
+}
+
+if [ "$1" == "stow" ]; then
+  shift
+  dotfiles-stow --no-folding $@
+  exit 0
+fi
+
+if [ "$1" == "unstow" ]; then
+    shift
+    dotfiles-stow -D $@
+    exit 0
+fi
+
+dotfiles-git $@

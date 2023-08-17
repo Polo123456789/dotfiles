@@ -1,15 +1,37 @@
 Dotfiles
 ========
 
-Mis configuraciones manejadas con stow.
+Requiere de `stow`
 
 Uso
 ---
 
+### Setup
+
+1. Clonar el repositorio a `~/dotfiles`
+2. Instalar el script `dotfiles` en `$PATH`
+3. Agregar el autocompletado del script al `bashrc`
+
+   ```sh
+    source ~/dotfiles/dotfiles-completion.bash
+   ```
+
+### Instalar configuraciones
+
 ```sh
-# Clonar el repositorio a $HOME/dotfiles
-cd dotfiles
-stow --no-folding <paquete>
+dotfiles stow <paquete>
+```
+
+### Remover configuraciones
+
+```sh
+dotfiles unstow <paquete>
+```
+
+### Control de versiones
+
+```sh
+dotfiles <git-cmd>
 ```
 
 Agregar configuraciones existentes
