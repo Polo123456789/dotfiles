@@ -75,6 +75,6 @@ hi! link CursorColumn CursorLine
 hi! link NonText LineNr
 
 " Awesome 80 characters delemiter
-execute "set colorcolumn=80"
+execute "set colorcolumn=81"
 " ctermbg=58 guibg=#5f5f00
 hi ColorColumn ctermfg=209 guifg=#ff875f
