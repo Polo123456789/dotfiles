@@ -1,6 +1,6 @@
 #!/bin/bash
 
-notes_dir="$HOME/docs/.notes"
+notes_dir="$HOME/docs/.notes/"
 
 n() {
     local note_path="$notes_dir/$1"
@@ -14,14 +14,11 @@ n() {
 }
 
 _n() {
-    local cur prev
+    local cur
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
-
-    cd "$notes_dir"
-    _filedir
-    cd $OLDPWD
+    # https://gist.github.com/Polo123456789/b4e08f5467f37fc75ce072db5f228fc9
+    COMPREPLY=( $(_compgen_files_relative_to "$notes_dir" "$cur") )
 }
 
 complete -o nospace -F _n n

@@ -1,5 +1,5 @@
 _dotfiles() {
-    local dotfiles_dir="$HOME/dotfiles"
+    local dotfiles_dir="$HOME/dotfiles/"
 
     local cur prev opts dir base_opts stow_opts
     COMPREPLY=()
@@ -20,9 +20,8 @@ _dotfiles() {
     fi
 
     if [[ ${prev} == "add" ]] ; then
-        cd ${dotfiles_dir}
-        _filedir
-        cd $OLDPWD
+        # https://gist.github.com/Polo123456789/b4e08f5467f37fc75ce072db5f228fc9
+        COMPREPLY=( $(_compgen_files_relative_to $dotfiles_dir $cur) )
         return 0
     fi
 }
