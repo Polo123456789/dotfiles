@@ -7,6 +7,9 @@ bindsym $mod+shift+m exec "/home/pablo/scripts/run-prompt"
 bindsym $mod+shift+o exec "/home/pablo/scripts/psg-open-file.sh"
 bindsym $mod+s exec flameshot gui
 
+bindsym $mod+$alt+shift+l move workspace to output right
+bindsym $mod+$alt+shift+h move workspace to output left
+
 smart_gaps off
 
 bindsym $mod+p exec --no-startup-id "/home/pablo/scripts/personal-ilia-menu.sh"

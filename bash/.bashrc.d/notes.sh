@@ -5,12 +5,15 @@ notes_dir="$HOME/docs/.notes/"
 n() {
     local note_path="$notes_dir/$1"
     local note_dir=$(dirname "$note_path")
+    local current_dir=$(pwd)
 
     if [ ! -d "$note_dir" ]; then
         mkdir -p "$note_dir"
     fi
 
+    cd "$note_dir"
     nvim "$note_path"
+    cd "$current_dir"
 }
 
 _n() {
