@@ -20,3 +20,6 @@ alias restore-tmp="mv ~/.persist-tmp/* ~/tmp/"
 alias rds="rclone-drive-sync"
 
 alias select-date="zenity --calendar --date-format='%Y-%m-%d'"
+
+# Last command first argument
+alias lfa='history | tail -n 2 | head -n 1 | awk '\''{print $3}'\'''
