@@ -1,0 +1,4 @@
+# vim:ft=i3config
+
+exec --no-startup-id dunst
+exec --no-startup-id nitrogen --restore

@@ -1,0 +1,8 @@
+# vim:ft=i3config
+
+gaps inner 15
+gaps outer 0
+smart_gaps off
+
+default_border pixel 0
+default_floating_border pixel 0

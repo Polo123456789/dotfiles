@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Go and disable the global shorcuts in kde config"
+read dummy -p "Press enter when done..."
