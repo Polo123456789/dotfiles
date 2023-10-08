@@ -1,0 +1,13 @@
+#!/bin/bash
+
+config_file="$DOTFILES_CONFIG_DIR/bash-post-stow-uninstall"
+uuid=$(head -n 1 "$config_file")
+lines_to_delete=$(tail -n 1 "$config_file")
+
+# find the line with the `uuid` in $HOME/.bashrc, and delete `lines_to_delete`
+# lines including it
+
+start_position=$(grep -n "$uuid" "$HOME/.bashrc" | cut -d: -f1)
+end_position=$((start_position + lines_to_delete - 1))
+
+sed -i "${start_position},${end_position}d" "$HOME/.bashrc"

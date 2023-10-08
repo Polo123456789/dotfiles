@@ -1,0 +1,28 @@
+#!/bin/bash
+
+tmpfile=$(mktemp)
+uuid="83a33b83-dfc5-433a-8fcd-392f80881bb4"
+
+cat <<EOF > $tmpfile
+# $uuid
+if [ -d "$HOME/.bashrc.d" ]
+then
+    for file in $HOME/.bashrc.d/*
+    do
+        if [ -r $file ]; then
+            source $file
+        fi
+    done
+    unset file
+fi
+EOF
+
+cat $tmpfile >> $HOME/.bashrc
+
+# Data needed to uninstall
+
+ufile="$DOTFILES_CONFIG_DIR/bash-post-stow-uninstall"
+echo "$uuid" > "$ufile"
+wc -l "$tmpfile" | cut -d' ' -f1 >> "$ufile"
+
+rm "$tmpfile"
