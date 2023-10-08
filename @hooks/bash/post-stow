@@ -9,8 +9,8 @@ if [ -d "$HOME/.bashrc.d" ]
 then
     for file in $HOME/.bashrc.d/*
     do
-        if [ -r $file ]; then
-            source $file
+        if [ -r \$file ]; then
+            source \$file
         fi
     done
     unset file
