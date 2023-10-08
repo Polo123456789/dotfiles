@@ -1,6 +1,12 @@
 #!/bin/bash
 
 dotfiles_dir="$HOME/dotfiles"
+hooks_dir="$dotfiles_dir/@hooks"
+
+export DOTFILES_CONFIG_DIR="$HOME/.config/dotfiles"
+if [ ! -d "$DOTFILES_CONFIG_DIR" ]; then
+  mkdir -p "$DOTFILES_CONFIG_DIR"
+fi
 
 dotfiles-git() {
   git --git-dir="$dotfiles_dir/.git" --work-tree="$dotfiles_dir" "$@"
@@ -10,15 +16,31 @@ dotfiles-stow() {
   stow -t "$HOME" -d "$dotfiles_dir" "$@"
 }
 
+run-hook() {
+    local package="$1"
+    local hook="$2"
+    local current_dir="$(pwd)"
+
+    cd "$HOME"
+    if [ -f "$hooks_dir/$package/$hook" ]; then
+        "$hooks_dir/$package/$hook"
+    fi
+    cd "$current_dir"
+}
+
 if [ "$1" == "stow" ]; then
   shift
+  run-hook "$1" "pre-stow"
   dotfiles-stow --no-folding $@
+  run-hook "$1" "post-stow"
   exit 0
 fi
 
 if [ "$1" == "unstow" ]; then
     shift
+    run-hook "$1" "pre-unstow"
     dotfiles-stow -D $@
+    run-hook "$1" "post-unstow"
     exit 0
 fi
 
