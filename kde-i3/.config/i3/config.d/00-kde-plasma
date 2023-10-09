@@ -1,7 +1,7 @@
+# vim:ft=i3config
+
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 for_window [title="Desktop @ QRect.*"] kill; floating enable; border none
-
-exec --no-startup-id picom -cCFb
 
 for_window [class="yakuake"] floating enable;
 for_window [class="lattedock"] floating enable;

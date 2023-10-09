@@ -1,0 +1,15 @@
+# vim:ft=i3config
+
+floating_maximum_size -1 x -1
+for_window [class="floating_window"] floating enable
+
+default_floating_border pixel 1
+default_border pixel 1
+
+for_window [all] border pixel 1
+
+popup_during_fullscreen smart
+
+focus_follows_mouse yes
+
+hide_edge_borders smart

@@ -1,13 +1,6 @@
 # vim:ft=i3config
 
-# Terminal
 bindsym $mod+Return exec kitty
-
-# Browser
 bindsym $mod+Shift+Return exec firefox
-
-# dmenu
-# bindsym $mod+d exec --no-startup-id dmenu_run
-
-# App launcher
+bindsym $mod+d exec --no-startup-id dmenu_run
 bindsym $mod+space exec --no-startup-id rofi -show run

@@ -1,0 +1,18 @@
+# vim:ft=i3config
+
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+bindsym $mod+Ctrl+a scratchpad show

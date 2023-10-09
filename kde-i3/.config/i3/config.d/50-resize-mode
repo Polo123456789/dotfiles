@@ -1,0 +1,25 @@
+# vim:ft=i3config
+
+set $i3-wm.resize.small 6
+set $i3-wm.resize.large 24
+mode "Resize Mode" {
+        bindsym Left resize shrink width $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym Down resize grow height $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym Up resize shrink height $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym Right resize grow width $i3-wm.resize.small px or $i3-wm.resize.small ppt
+
+        bindsym Shift+Left resize shrink width $i3-wm.resize.large px or $i3-wm.resize.large ppt
+        bindsym Shift+Down resize grow height $i3-wm.resize.large px or $i3-wm.resize.large ppt
+        bindsym Shift+Up resize shrink height $i3-wm.resize.large px or $i3-wm.resize.large ppt
+        bindsym Shift+Right resize grow width $i3-wm.resize.large px or $i3-wm.resize.large ppt
+
+        bindsym h resize shrink width $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym k resize grow height $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym j resize shrink height $i3-wm.resize.small px or $i3-wm.resize.small ppt
+        bindsym l resize grow width $i3-wm.resize.small px or $i3-wm.resize.small ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "Resize Mode"

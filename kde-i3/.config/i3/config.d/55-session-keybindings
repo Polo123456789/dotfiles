@@ -1,0 +1,8 @@
+# vim:ft=i3config
+
+bindsym $mod+Shift+q [con_id="__focused__"] kill
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+s exec systemctl suspend
