@@ -3,4 +3,5 @@
 exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -cCFb
+exec --no-startup-id numlockx on
 # exec --no-startup-id /usr/bin/unclutter -b
