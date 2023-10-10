@@ -6,12 +6,6 @@ import sys
 def colorString(string: str, color: str):
     return f'\033[{color}m{string}\033[0m'
 
-print("")
-print(colorString('########################################', '1;32'))
-print(colorString('#             Re Stow Files            #', '1;32'))
-print(colorString('########################################', '1;32'))
-print("")
-
 dryRun=False
 
 compareTo=sys.argv[1] if len(sys.argv) > 1 else 'ORIG_HEAD'
@@ -45,6 +39,15 @@ for line in lines:
             changedPackages[name]=[]
 
         changedPackages[name].append(f'{changeType} {file}')
+
+if len(changedPackages) == 0:
+    exit(0)
+
+print("")
+print(colorString('########################################', '1;32'))
+print(colorString('#             Re Stow Files            #', '1;32'))
+print(colorString('########################################', '1;32'))
+print("")
 
 packagesToReStow=[]
 
