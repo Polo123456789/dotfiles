@@ -1,4 +1,4 @@
 #!/bin/bash
 
 exec < /dev/tty
-@git-hooks/re-stow.py
+@git-hooks/re-stow.py 'ORIG_HEAD'

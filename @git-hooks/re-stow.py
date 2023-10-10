@@ -1,6 +1,7 @@
 #!/bin/env python3
 
 import subprocess
+import sys
 
 def colorString(string: str, color: str):
     return f'\033[{color}m{string}\033[0m'
@@ -13,7 +14,9 @@ print("")
 
 dryRun=False
 
-gitDiff=subprocess.check_output(['git', 'diff-tree', '-r', '--raw', 'ORIG_HEAD', 'HEAD'])
+compareTo=sys.argv[1] if len(sys.argv) > 1 else 'ORIG_HEAD'
+
+gitDiff=subprocess.check_output(['git', 'diff-tree', '-r', '--raw', compareTo, 'HEAD'])
 gitDiff=gitDiff.decode('utf-8')
 
 lines=gitDiff.split('\n')
