@@ -7,7 +7,7 @@ def colorString(string: str, color: str):
 
 print("")
 print(colorString('########################################', '1;32'))
-print(colorString('#          Post Merge Hook             #', '1;32'))
+print(colorString('#             Re Stow Files            #', '1;32'))
 print(colorString('########################################', '1;32'))
 print("")
 

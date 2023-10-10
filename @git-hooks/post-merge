@@ -1,4 +1,4 @@
 #!/bin/bash
 
 exec < /dev/tty
-@git-hooks/post-merge.py
+@git-hooks/re-stow.py
