@@ -9,12 +9,16 @@ Uso
 ### Setup
 
 1. Clonar el repositorio a `~/dotfiles`
+
 2. Instalar el script `dotfiles` en `$PATH`
+
 3. Agregar el auto completado del script al `bashrc`
 
    ```sh
     source ~/dotfiles/dotfiles-completion.bash
    ```
+
+4. Agregar los hooks de git: `git config core.hooksPath @git-hooks/`
 
 ### Instalar configuraciones
 
