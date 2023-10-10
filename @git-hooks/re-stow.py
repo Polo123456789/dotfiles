@@ -63,12 +63,7 @@ def runCmd(cmd: str):
         subprocess.run(cmd.split(' '))
 
 if len(packagesToReStow) > 0:
-    print('Reinstalando paquetes:')
-    runCmd('git checkout master@{5.minutes.ago}')
     for package in packagesToReStow:
-        runCmd(f'dotfiles unstow {package}')
-    runCmd('git checkout master')
-    for package in packagesToReStow:
-        runCmd(f'dotfiles stow {package}')
+        runCmd(f'stow --restow {package}')
 
 print(colorString('Done', '1;32'))
