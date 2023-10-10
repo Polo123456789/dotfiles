@@ -64,7 +64,7 @@ def runCmd(cmd: str):
 
 if len(packagesToReStow) > 0:
     print('Reinstalando paquetes:')
-    runCmd('git reset --hard master@{5 minutes ago}')
+    runCmd('git checkout master@{5.minutes.ago}')
     for package in packagesToReStow:
         runCmd(f'dotfiles unstow {package}')
     runCmd('git checkout master')
