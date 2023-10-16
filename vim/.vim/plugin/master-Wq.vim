@@ -1,0 +1,1 @@
+command Wq wq
