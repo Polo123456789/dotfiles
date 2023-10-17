@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "Recuerda que este paquete depende de el paquete bash"
