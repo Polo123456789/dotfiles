@@ -50,4 +50,10 @@ if [ "$1" == "adopt" ]; then
     exit 0
 fi
 
+if [ "$1" == "restow" ]; then
+    shift
+    dotfiles-stow --restow $@
+    exit 0
+fi
+
 dotfiles-git $@
