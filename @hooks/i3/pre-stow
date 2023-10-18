@@ -3,3 +3,5 @@
 echo "Remember that this config is enviroment agnostic."
 echo "You will need to other packages (like kde-i3) to get functionality like"
 echo "exiting i3, volume control, etc."
+echo ""
+echo "Also check that all programs that are auto started are installed"
