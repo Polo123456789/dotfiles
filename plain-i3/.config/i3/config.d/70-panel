@@ -1,0 +1,32 @@
+# vim:ft=i3config
+
+bindsym $mod+i bar mode toggle
+
+# Ya vere como los remplazo
+# set_from_resource $i3-wm.bar.font i3-wm.bar.font monospace
+# set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput primary
+# set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command i3xrocks -u ~/.config/regolith2/i3xrocks/conf.d -d /usr/share/i3xrocks/conf.d
+
+# The bar configuration
+bar {
+  position top
+  mode dock
+  # font pango:$i3-wm.bar.font
+  separator_symbol " "
+  status_command i3status
+  # tray_output $i3-wm.bar.trayoutput
+  strip_workspace_numbers yes
+  workspace_min_width 36
+
+  colors {
+      background "#002b36"
+      statusline "#93a1a1"
+      separator  "#268bd2"
+
+#                        BORDER     BACKGROUND TEXT
+      focused_workspace  "#073642"  "#073642"  "#eee8d5"
+      active_workspace   "#073642"  "#073642"  "#586e75"
+      inactive_workspace "#002b36"  "#002b36"  "#586e75"
+      urgent_workspace   "#dc322f"  "#dc322f"  "#fdf6e3"
+  }
+}
