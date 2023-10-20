@@ -1,0 +1,4 @@
+# vim:ft=i3config
+
+bindsym XF86MonBrightnessDown exec --no-startup-id "$HOME/scripts/psbacklight down"
+bindsym XF86MonBrightnessUp exec --no-startup-id "$HOME/scripts/psbacklight up"
