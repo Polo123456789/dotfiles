@@ -14,7 +14,7 @@ _dotfiles() {
         return 0
     fi
 
-    if [[ ${prev} == "stow" ]] || [[ ${prev} == "unstow" ]] || [[ ${prev} == "adopt" ]] ; then
+    if [[ ${prev} == "stow" ]] || [[ ${prev} == "unstow" ]] || [[ ${prev} == "adopt" ]] || [[ ${prev} == "restow" ]]; then
         COMPREPLY=( $(compgen -W "$stow_opts" -- ${cur}) )
         return 0
     fi
