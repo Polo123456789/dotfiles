@@ -1,3 +1,14 @@
 # vim:ft=i3config
 
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+mode "Exit Mode" {
+    bindsym e exit
+    bindsym r exec systemctl reboot
+    bindsym p exec systemctl poweroff
+    bindsym s mode "default"; exec setxkbmap us && i3lock -befc 000000 && systemctl suspend
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+Shift+e mode "Exit Mode"
+bindsym $mod+$alt+l exec i3lock -befc 000000
