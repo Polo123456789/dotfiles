@@ -13,7 +13,7 @@ bar {
   mode dock
   # font pango:$i3-wm.bar.font
   separator_symbol " "
-  status_command i3status
+  status_command i3blocks
   # tray_output $i3-wm.bar.trayoutput
   strip_workspace_numbers yes
   workspace_min_width 36
