@@ -4,4 +4,6 @@ exec --no-startup-id dunst
 exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -cCFb
 exec --no-startup-id numlockx on
-# exec --no-startup-id /usr/bin/unclutter -b
+exec --no-startup-id /usr/bin/unclutter -b
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -befc 000000 --nofork
+exec --no-startup-id nm-applet

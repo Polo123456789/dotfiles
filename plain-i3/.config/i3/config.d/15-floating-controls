@@ -1,14 +1,14 @@
 # vim:ft=i3config
 
-set $floating_term_cmd kitty --class kittyFloat
+set $floating_term_cmd kitty --class psFloatingControl
 
-for_window [class="kittyFloat"] floating enable 
-for_window [class="kittyFloat"] resize set 800 600
-for_window [class="kittyFloat"] move position center
+for_window [class="psFloatingControl"] floating enable 
+for_window [class="psFloatingControl"] resize set 800 600
+for_window [class="psFloatingControl"] move position center
 
 bindsym $mod+Shift+b exec $floating_term_cmd bluetoothctl
-# bindsym $mod+Shift+m exec $floating_term_cmd #script que se encarge de los monitores
-# bindsym $mod+Shift+a exec $floating_term_cmd #script que se encarge de los audios
+# bindsym $mod+Shift+m exec $floating_term_cmd #script que se encarge de los
+ bindsym $mod+Shift+a exec pavucontrol --class psFloatingControl
 # bindsym $mod+Shift+d exec $floating_term_cmd #script que se encarge de los discos
 # bindsym $mod+Shift+w exec $floating_term_cmd #script que se encarge de las redes
 bindsym $mod+$alt+Return exec $floating_term_cmd

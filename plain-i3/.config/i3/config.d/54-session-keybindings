@@ -4,11 +4,11 @@ mode "Exit Mode" {
     bindsym e exit
     bindsym r exec systemctl reboot
     bindsym p exec systemctl poweroff
-    bindsym s mode "default"; exec setxkbmap us && i3lock -befc 000000 && systemctl suspend
+    bindsym s mode "default"; exec setxkbmap us && systemctl suspend
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
 bindsym $mod+Shift+e mode "Exit Mode"
-bindsym $mod+$alt+l exec i3lock -befc 000000
+bindsym $mod+$alt+l exec loginctl lock-session

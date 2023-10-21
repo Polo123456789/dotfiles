@@ -6,7 +6,7 @@ for_window [class="floating_window"] floating enable
 default_floating_border pixel 1
 default_border pixel 1
 
-# for_window [all] border pixel 1
+for_window [all] border pixel 1
 
 popup_during_fullscreen smart
 
@@ -16,7 +16,7 @@ hide_edge_borders smart
 
 
 #                       border      background  text       indicator
-client.focused          "#002b36"   "#586e75"   "#fdf6e3"  "#268bd2" 
+client.focused          "#002b36"   "#EAF9D9"   "#000000"  "#268bd2" 
 client.focused_inactive "#002b36"   "#073642"   "#839496"  "#073642"
 client.unfocused        "#002b36"   "#073642"   "#839496"  "#073642"
 client.urgent           "#002b36"   "#dc322f"   "#fdf6e3"  "#002b36"
