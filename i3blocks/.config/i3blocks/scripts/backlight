@@ -1,0 +1,7 @@
+#!/bin/bash
+
+backlight=$($HOME/scripts/psbacklight get)
+echo "BL:$backlight%"
+echo "BL:$backlight%"
+echo "#FFFFFF"
+

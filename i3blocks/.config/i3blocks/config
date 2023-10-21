@@ -1,0 +1,43 @@
+# vim:ft=dosini
+
+[bluetooth]
+command=$HOME/.config/i3blocks/scripts/bluetooth
+interval=5
+
+# [backlight]
+# command=$HOME/.config/i3blocks/scripts/backlight
+# interval=1
+
+[volume]
+command=$HOME/.config/i3blocks/scripts/volume
+interval=1
+
+[disk]
+command=$HOME/.config/i3blocks/scripts/disk
+interval=7200
+
+[ip]
+command=$HOME/.config/i3blocks/scripts/ip
+interval=5
+
+[battery]
+command=$HOME/.config/i3blocks/scripts/battery
+interval=30
+
+[cpu]
+command=$HOME/.config/i3blocks/scripts/cpu
+interval=5
+
+[memory]
+command=$HOME/.config/i3blocks/scripts/memory
+interval=5
+
+[date]
+command=date '+%D %T'
+interval=1
+color=#FFFFFF
+
+[kbmap]
+command=setxkbmap -query | grep layout | awk '{print $2}'
+interval=3
+color=#FFFFFF

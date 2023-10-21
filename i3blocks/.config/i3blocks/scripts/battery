@@ -1,0 +1,30 @@
+#!/bin/bash
+
+acpi_output=$(acpi -b)
+battery_percentage=$(echo $acpi_output | grep -E -o '[0-9][0-9]?[0-9]?%')
+battery_status=$(echo $acpi_output | grep -E -o 'Charging|Discharging')
+battery_time=$(echo $acpi_output | grep -E -o '[0-9][0-9]:[0-9][0-9]:[0-9][0-9]')
+short_battery_time=$(echo $acpi_output | grep -E -o '[0-9][0-9]:[0-9][0-9]')
+
+case $battery_status in
+    "Charging")
+        battery_status="+"
+        ;;
+    "Discharging")
+        battery_status="-"
+        ;;
+esac
+
+# full_text
+echo "Bat: $battery_percentage$battery_status $battery_time"
+# short_text
+echo "B:$battery_percentage$battery_status $short_battery_time"
+
+#                                     urgent
+[ ${battery_percentage%?} -le 20 ] && exit 33
+[ ${battery_percentage%?} -le 40 ] && echo "#FF8000" && exit 0
+
+# color
+echo "#90EE90"
+
+exit 0

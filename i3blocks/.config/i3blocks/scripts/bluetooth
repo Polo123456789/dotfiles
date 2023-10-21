@@ -1,0 +1,28 @@
+#!/bin/bash
+
+bluetooth_status=$(bluetoothctl show | grep Powered | awk '{print $2}')
+
+if [ "$bluetooth_status" = "yes" ]; then
+    paired_devices=$(bluetoothctl paired-devices | grep Device | awk '{print $2}')
+    connected_devices=0
+    for device in $paired_devices; do
+        connected=$(bluetoothctl info $device | grep Connected | awk '{print $2}')
+        if [ "$connected" = "yes" ]; then
+            connected_devices=$((connected_devices+1))
+        fi
+    done
+
+    if [ "$connected_devices" -gt 0 ]; then
+        echo "B:$connected_devices"
+        echo "B:$connected_devices"
+        echo "#1F51FF"
+    else
+        echo "B"
+        echo "B"
+        echo "#1F51FF"
+    fi
+else
+    echo "B"
+    echo "B"
+    echo "#808080"
+fi
