@@ -1,5 +1,6 @@
 #!/bin/bash
 
+dotfiles_script="$0"
 dotfiles_dir="$HOME/dotfiles"
 hooks_dir="$dotfiles_dir/@hooks"
 
@@ -13,23 +14,94 @@ dotfiles-git() {
 }
 
 dotfiles-stow() {
-  stow -t "$HOME" -d "$dotfiles_dir" "$@"
+  stow -t "$HOME" -d "$dotfiles_dir" --ignore='@.*' -v "$@"
+}
+
+# If there is no output, the package is stowed
+package-is-stowed() {
+  local package="$1"
+  dotfiles-stow -n $1  2>&1 | grep -v "WARNING"
+}
+
+stow-dependencies() {
+  local package="$1"
+  local dependencies_file="$dotfiles_dir/$package/@depends"
+
+  if [ -f "$dependencies_file" ]; then
+    local dependencies="$(cat $dependencies_file)"
+    
+    echo "Package $package depends on:"
+    for dependency in $dependencies; do
+      echo "  * $dependency"
+    done
+    read -p "Do you want to stow them? [y/N] " -n 1 -r answer
+    echo
+
+    if [[ ! $answer =~ ^[Yy]$ ]]; then
+      echo "Skipping dependencies"
+      return 0
+    fi
+
+    echo "Going into dependencies:"
+    for dependency in $dependencies; do
+      if [ -z "$(package-is-stowed $dependency)" ]; then
+        echo "Dependency $dependency is already stowed"
+      else
+        $dotfiles_script stow $dependency
+      fi
+    done
+  fi
+}
+
+unstow-dependencies() {
+  local package="$1"
+  local dependencies_file="$dotfiles_dir/$package/@depends"
+
+  if [ -f "$dependencies_file" ]; then
+    local dependencies="$(cat $dependencies_file)"
+    
+    echo "Package $package depends on:"
+    for dependency in $dependencies; do
+      echo "  * $dependency"
+    done
+    read -p "Do you want to unstow them? [y/N] " -n 1 -r answer
+    echo
+
+    if [[ ! $answer =~ ^[Yy]$ ]]; then
+      echo "Skipping dependencies"
+      return 0
+    fi
+
+    echo "Going into dependencies:"
+    for dependency in $dependencies; do
+      if [ -n "$(package-is-stowed $dependency)" ]; then
+        echo "Dependency $dependency is not stowed"
+      else
+        $dotfiles_script unstow $dependency
+      fi
+    done
+  fi
 }
 
 run-hook() {
-    local package="$1"
-    local hook="$2"
-    local current_dir="$(pwd)"
+  local package="$1"
+  local hook="$2"
+  local current_dir="$(pwd)"
 
-    cd "$HOME"
-    if [ -f "$hooks_dir/$package/$hook" ]; then
-        "$hooks_dir/$package/$hook"
-    fi
-    cd "$current_dir"
+  cd "$HOME"
+  if [ -f "$hooks_dir/$package/$hook" ]; then
+      "$hooks_dir/$package/$hook"
+  fi
+  cd "$current_dir"
 }
 
 if [ "$1" == "stow" ]; then
   shift
+  if [ -z "$(package-is-stowed $1)" ]; then
+    echo "Package $1 is already stowed"
+    exit 0
+  fi
+  stow-dependencies $1
   run-hook "$1" "pre-stow"
   dotfiles-stow --no-folding $@
   run-hook "$1" "post-stow"
@@ -37,23 +109,26 @@ if [ "$1" == "stow" ]; then
 fi
 
 if [ "$1" == "unstow" ]; then
-    shift
-    run-hook "$1" "pre-unstow"
-    dotfiles-stow -D $@
-    run-hook "$1" "post-unstow"
-    exit 0
+  shift
+  unstow-dependencies $1
+  run-hook "$1" "pre-unstow"
+  dotfiles-stow -D $@ 2>&1 | grep -v 'BUG'
+  run-hook "$1" "post-unstow"
+  exit 0
 fi
 
 if [ "$1" == "adopt" ]; then
-    shift
-    dotfiles-stow --adopt $@
-    exit 0
+  shift
+  dotfiles-stow --adopt $@
+  exit 0
 fi
 
 if [ "$1" == "restow" ]; then
-    shift
-    dotfiles-stow --restow $@
-    exit 0
+  shift
+  dotfiles-stow --restow $@
+  exit 0
 fi
 
 dotfiles-git $@
+
+# vim:set softtabstop=2 shiftwidth=2 expandtab:

@@ -1,15 +1,10 @@
 #!/bin/bash
 
-echo "Select editor to install plugins in:"
-echo "1. Neovim"
-echo "2. Vim"
-read -p "Enter your choice: " choice
+read -p "Install vim plugins? [y/N] " -n 1 -r
+echo
 
-if [ $choice -eq 1 ]; then
-    echo "nvim" > $DOTFILES_CONFIG_DIR/vim-post-stow-editor
-    nvim +PlugInstall +qall
-else
-    echo "vim" > $DOTFILES_CONFIG_DIR/vim-post-stow-editor
-    vim +PlugInstall +qall
+if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+    exit 0
 fi
+vim +PlugInstall +qall
 

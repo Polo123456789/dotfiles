@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -d "$HOME/.local/share/nvim/plugged" ]
+then
+    echo "Removing nvim plugins"
+    rm -rf "$HOME/.local/share/nvim/plugged"
+fi

@@ -1,7 +1,8 @@
 Dotfiles
 ========
 
-Requiere de `stow`
+Requiere de `stow`. Todo directorio iniciando con un `@` es ignorado por
+`stow`, y esta reservado para el uso de `dotfiles`.
 
 Uso
 ---
@@ -88,3 +89,13 @@ Todos los scripts pueden asumir que se encuentran en la carpeta `$HOME`, y que
 la variable `$DOTFILES_CONFIG_DIR` contiene una carpeta a la que se puede
 escribir, en la que podrán guardar archivos de configuración necesarios para
 correr otros hooks.
+
+Dependencias
+------------
+
+Los paquetes pueden tener dependencias, las cuales se instalaran antes de el
+paquete en si. Estas se especifican en el archivo `paquete/@depends`, un
+paquete por linea.
+
+No hay ningun chequeo de dependencias ciclicas, por lo que es responsabilidad
+del usuario evitarlas.

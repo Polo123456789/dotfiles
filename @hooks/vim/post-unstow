@@ -1,13 +1,6 @@
 #!/bin/bash
 
-editor=$(cat "$DOTFILES_CONFIG_DIR/vim-post-stow-editor")
-
-echo "Removing $editor plugins..."
-
-if [[ "$editor" == "vim" ]]; then
+if [ -d "$HOME/.vim/plugged" ]; then
+    echo "Removing vim plugins"
     rm -rf "$HOME/.vim/plugged"
-elif [[ "$editor" == "nvim" ]]; then
-    rm -rf "$HOME/.local/share/nvim/plugged"
 fi
-
-rm $DOTIFLES_CONFIG_DIR/vim-post-stow-editor
