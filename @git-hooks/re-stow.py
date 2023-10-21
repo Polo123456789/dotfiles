@@ -70,6 +70,6 @@ def runCmd(cmd: str):
 
 if len(packagesToReStow) > 0:
     for package in packagesToReStow:
-        runCmd(f'stow --restow {package}')
+        runCmd(f'dotfiles restow {package}')
 
 print(colorString('Done', '1;32'))
