@@ -4,8 +4,8 @@ free_output=$(free -h)
 total_mem=$(echo "$free_output" | grep Mem | awk '{print $2}')
 used_mem=$(echo "$free_output" | grep Mem | awk '{print $3}')
 
-total_num=$(echo "$total_mem" | sed 's/Gi//g')
-used_num=$(echo "$used_mem" | sed 's/Gi//g')
+total_num=$(free -b | grep Mem | awk '{print $2}')
+used_num=$(free -b | grep Mem | awk '{print $3}')
 
 used_persentage=$(echo "scale=2; $used_num/$total_num*100" | bc | sed 's/\..*//g')
 
