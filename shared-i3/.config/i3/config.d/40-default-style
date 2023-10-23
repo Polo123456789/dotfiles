@@ -10,7 +10,7 @@ for_window [all] border pixel 1
 
 popup_during_fullscreen smart
 
-focus_follows_mouse yes
+focus_follows_mouse no
 
 hide_edge_borders smart
 

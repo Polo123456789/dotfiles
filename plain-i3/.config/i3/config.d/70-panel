@@ -8,7 +8,7 @@ bar {
   font pango:monospace 9
   separator_symbol " "
   status_command i3blocks
-  # tray_output primary
+  tray_output primary
   strip_workspace_numbers yes
   workspace_min_width 36
 
