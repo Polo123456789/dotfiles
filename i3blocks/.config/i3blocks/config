@@ -4,9 +4,9 @@
 command=$HOME/.config/i3blocks/scripts/bluetooth
 interval=5
 
-# [backlight]
-# command=$HOME/.config/i3blocks/scripts/backlight
-# interval=1
+[backlight]
+command=$HOME/.config/i3blocks/scripts/backlight
+interval=1
 
 [volume]
 command=$HOME/.config/i3blocks/scripts/volume
