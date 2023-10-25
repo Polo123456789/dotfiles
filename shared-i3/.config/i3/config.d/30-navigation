@@ -16,3 +16,5 @@ bindsym $mod+Tab workspace next
 bindsym $mod+Shift+Tab workspace prev
 
 bindsym $mod+Ctrl+a scratchpad show
+
+bindsym $mod+u [urgent=latest] focus
