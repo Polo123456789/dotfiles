@@ -1,7 +1,4 @@
 #!/bin/bash
 
 # No system wide config, only I need this
-xset dpms 0 0 600
-
-# Else apps open really slow
-/usr/libexec/xdg-desktop-portal-gtk &
+xset dpms 0 0 300
