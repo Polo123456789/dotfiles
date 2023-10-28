@@ -19,8 +19,8 @@ bar {
 
 #                        BORDER     BACKGROUND TEXT
       focused_workspace  "#073642"  "#EAF9D9"  "#002B36"
-      active_workspace   "#073642"  "#073642"  "#586e75"
-      inactive_workspace "#002b36"  "#6B818C"  "#EAF9D9"
+      active_workspace    "#002b36"  "#6B818C"  "#EAF9D9"
+      inactive_workspace   "#073642"  "#073642"  "#586e75"
       urgent_workspace   "#dc322f"  "#dc322f"  "#fdf6e3"
   }
 }

@@ -1,14 +1,16 @@
 # vim:ft=i3config
 
-mode "Exit Mode" {
+set $exit_mode "(e)xit, (r)eboot, (p)oweroff, (s)uspend, (l)ock"
+
+mode $exit_mode {
     bindsym e exit
     bindsym r exec systemctl reboot
     bindsym p exec systemctl poweroff
     bindsym s mode "default"; exec setxkbmap us && systemctl suspend
+    bindsym l mode "default"; exec setxkbmap us && loginctl lock-session
 
     bindsym Escape mode "default"
     bindsym Return mode "default"
 }
 
-bindsym $mod+Shift+e mode "Exit Mode"
-bindsym $mod+$alt+l exec loginctl lock-session
+bindsym $mod+Shift+e mode $exit_mode

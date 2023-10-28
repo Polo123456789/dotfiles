@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# No system wide config, only I need this
+xset dpms 0 0 300
