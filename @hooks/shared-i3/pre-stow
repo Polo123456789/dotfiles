@@ -2,5 +2,5 @@
 
 echo "Remember that shared-i3 is meant to be a dependency, it doesnt contain"
 echo "all the configuration needed for thinks like volume control, brightness,"
-exit "or EXITING i3"
+echo "or EXITING i3"
 
