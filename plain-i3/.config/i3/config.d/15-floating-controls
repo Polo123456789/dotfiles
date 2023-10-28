@@ -11,3 +11,15 @@ bindsym $mod+Shift+a exec pavucontrol --class psFloatingControl
 bindsym $mod+Shift+w exec $floating_term_cmd nmtui
 bindsym $mod+$alt+Return exec $floating_term_cmd
 bindsym $mod+Shift+p exec $floating_term_cmd $HOME/scripts/fzf-pass copy
+
+set $udiskie_mode "udiskie: (m)ount, (u)nmount"
+
+mode $udiskie_mode {
+    bindsym m exec $HOME/scripts/udiskie-dmenu mount ; mode "default"
+    bindsym u exec $HOME/scripts/udiskie-dmenu unmount ; mode "default"
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
+
+bindsym $mod+Shift+u mode $udiskie_mode
