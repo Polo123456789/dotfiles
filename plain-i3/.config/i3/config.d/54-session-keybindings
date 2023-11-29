@@ -1,13 +1,24 @@
 # vim:ft=i3config
 
 set $exit_mode "(e)xit, (r)eboot, (p)oweroff, (s)uspend, (l)ock"
+set $lock_mode "(l)ock [pixelated], (b)lurred, (n)one"
+
+mode $lock_mode {
+    bindsym l mode "default"; exec setxkbmap us && loginctl lock-session
+    bindsym p mode "default"; exec setxkbmap us && $HOME/scripts/i3-lock-with-screenshot pixelate
+    bindsym b mode "default"; exec setxkbmap us && $HOME/scripts/i3-lock-with-screenshot blur
+    bindsym n mode "default"; exec setxkbmap us && $HOME/scripts/i3-lock-with-screenshot
+
+    bindsym Escape mode "default"
+    bindsym Return mode "default"
+}
 
 mode $exit_mode {
     bindsym e exit
     bindsym r exec systemctl reboot
     bindsym p exec systemctl poweroff
     bindsym s mode "default"; exec setxkbmap us && systemctl suspend
-    bindsym l mode "default"; exec setxkbmap us && loginctl lock-session
+    bindsym l mode $lock_mode
 
     bindsym Escape mode "default"
     bindsym Return mode "default"

@@ -5,4 +5,4 @@ exec --no-startup-id nitrogen --restore
 exec --no-startup-id picom -cCfb
 exec --no-startup-id numlockx on
 exec --no-startup-id /usr/bin/unclutter -b
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -befc 000000 --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- $HOME/scripts/i3-lock-with-screenshot pixelate

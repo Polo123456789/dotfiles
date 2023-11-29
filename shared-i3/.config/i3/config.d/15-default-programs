@@ -5,3 +5,4 @@ bindsym $mod+Shift+Return exec firefox
 bindsym $mod+d exec --no-startup-id dmenu_run -l 20
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -l 20'
 bindsym $mod+s exec flameshot gui
+bindsym Print exec flameshot gui
