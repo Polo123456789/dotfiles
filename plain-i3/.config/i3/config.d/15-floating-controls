@@ -9,7 +9,7 @@ for_window [class="psFloatingControl"] move position center
 bindsym $mod+Shift+b exec $floating_term_cmd bluetoothctl
 bindsym $mod+Shift+a exec pavucontrol --class psFloatingControl
 bindsym $mod+Shift+w exec $floating_term_cmd nmtui
-bindsym $mod+$alt+Return exec $floating_term_cmd
+bindsym $mod+$alt+Return exec $floating_term_cmd sh -c 'tmux attach -t float || tmux new -s float'
 bindsym $mod+Shift+p exec $HOME/scripts/dmenu-pass copy
 
 set $udiskie_mode "udiskie: (m)ount, (u)nmount"
