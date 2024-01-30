@@ -1,2 +1,2 @@
-# neofetch  --ascii_distro lfs
-cat ~/.banner
+/home/pablo/.local/bin/cowsay-random
+

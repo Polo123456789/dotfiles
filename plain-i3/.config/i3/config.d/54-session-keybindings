@@ -1,6 +1,6 @@
 # vim:ft=i3config
 
-set $exit_mode "(e)xit, (r)eboot, (p)oweroff, (s)uspend, (l)ock"
+set $exit_mode "(e)xit, (r)eboot, (p)oweroff, (s)uspend, (l)ock, (h)ibernate"
 set $lock_mode "(l)ock [pixelated], (b)lurred, (n)one"
 
 mode $lock_mode {
@@ -18,6 +18,7 @@ mode $exit_mode {
     bindsym r exec systemctl reboot
     bindsym p exec systemctl poweroff
     bindsym s mode "default"; exec setxkbmap us && systemctl suspend
+    bindsym h mode "default"; exec setxkbmap us && systemctl hibernate
     bindsym l mode $lock_mode
 
     bindsym Escape mode "default"
