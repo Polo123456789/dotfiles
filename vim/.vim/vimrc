@@ -5,9 +5,10 @@ call plug#begin()
 " Plug 'vim-airline/vim-airline-themes'
 " Plug 'mattn/emmet-vim'
 " Plug 'mhinz/vim-startify'
+
 if has('nvim')
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 else
 "   Plug 'lifepillar/vim-mucomplete'
 endif
