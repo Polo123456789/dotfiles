@@ -1,6 +1,6 @@
 #!/bin/bash
 
-acpi_output=$(acpi -b | head -n 1)
+acpi_output=$(acpi -b | grep -v "unavailable" | head -n 1)
 battery_percentage=$(echo $acpi_output | grep -E -o '[0-9][0-9]?[0-9]?%')
 battery_status=$(echo $acpi_output | grep -E -o 'Charging|Discharging')
 battery_time=$(echo $acpi_output | grep -E -o '[0-9][0-9]:[0-9][0-9]:[0-9][0-9]')
