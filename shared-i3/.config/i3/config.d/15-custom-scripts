@@ -5,3 +5,16 @@ bindsym $mod+n exec "/home/pablo/scripts/nsession --dmenu"
 bindsym $mod+p exec "/home/pablo/scripts/run-prompt"
 bindsym $mod+shift+o exec "/home/pablo/scripts/psg-open-file.sh"
 bindsym $mod+w exec "/home/pablo/scripts/dmenu-focus"
+
+# Create a remote connection mode, r for remmina, s for ssh
+set $remote_mode "(r)emmina, (s)sh"
+
+mode $remote_mode {
+    bindsym r exec "/home/pablo/scripts/remmina-connect-hamachi"; mode "default"
+    bindsym s exec "/home/pablo/scripts/ssh-connect-host"; mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+$alt+r mode $remote_mode
+
