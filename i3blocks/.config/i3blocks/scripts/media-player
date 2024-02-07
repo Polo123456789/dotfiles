@@ -1,0 +1,12 @@
+#!/bin/bash
+
+state=$(playerctl status 2> /dev/null)
+
+if [[ $state = "Playing" ]]; then
+    echo "M:>"
+elif [[ $state = "Paused" ]]; then
+    echo "M:||"
+else
+    echo "M:X"
+fi
+
