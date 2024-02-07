@@ -20,3 +20,5 @@ nnoremap <leader>gg :nnoremap <leader<Space><Left>>gg<Right>
 
 " Make missing directory if needed
 nnoremap <Leader>md :call mkdir(expand("%:p:h"), "p")<CR>
+
+inoremap <C-BS> <C-w>
