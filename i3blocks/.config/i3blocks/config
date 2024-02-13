@@ -6,6 +6,8 @@ interval=5
 
 [media]
 command=$HOME/.config/i3blocks/scripts/media-player
+interval=2
+color=#FFFFFF
 
 # [backlight]
 # command=$HOME/.config/i3blocks/scripts/backlight
