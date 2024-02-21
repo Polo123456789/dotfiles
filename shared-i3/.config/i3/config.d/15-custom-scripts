@@ -18,3 +18,4 @@ mode $remote_mode {
 
 bindsym $mod+$alt+r mode $remote_mode
 bindsym $mod+$alt+k exec "$HOME/scripts/dmenu-kill"
+bindsym $mod+$alt+b exec "$HOME/scripts/dmenu-bluetooth-toggle-connection"
