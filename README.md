@@ -99,3 +99,22 @@ paquete por linea.
 
 No hay ningun chequeo de dependencias ciclicas, por lo que es responsabilidad
 del usuario evitarlas.
+
+Diferentes Maquinas
+-------------------
+
+Para cambiar las configuraciones de una maquina a otra, se puede usar el
+siguiente comando:
+
+```sh
+dotfiles branch-out
+```
+
+Este comando creara una rama con el hostname de la maquina actual. Luego se
+puede usar el comando:
+
+```sh
+dotfiles pull-master
+```
+
+Para traer los cambios de la rama `master` a la rama del hostname.

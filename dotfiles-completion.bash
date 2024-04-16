@@ -5,7 +5,7 @@ _dotfiles() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    base_opts="stow unstow adopt restow add commit push pull status log diff"
+    base_opts="stow unstow adopt restow add commit push pull status log diff branch-out pull-master"
     stow_opts=$(ls -d ${dotfiles_dir}/*/ | xargs -n1 basename)
 
 

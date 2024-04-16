@@ -4,6 +4,12 @@ dotfiles_script="$0"
 dotfiles_dir="$HOME/dotfiles"
 hooks_dir="$dotfiles_dir/@hooks"
 
+if ! command -v hostname &> /dev/null; then
+  machine_hostname="$(cat /etc/hostname)"
+else
+  machine_hostname="$(hostname)"
+fi
+
 export DOTFILES_CONFIG_DIR="$HOME/.config/dotfiles"
 if [ ! -d "$DOTFILES_CONFIG_DIR" ]; then
   mkdir -p "$DOTFILES_CONFIG_DIR"
@@ -126,6 +132,20 @@ fi
 if [ "$1" == "restow" ]; then
   shift
   dotfiles-stow --restow $@
+  exit 0
+fi
+
+if [ "$1" == "branch-out" ]; then
+  dotfiles-git checkout -b "$machine_hostname"
+  exit 0
+fi
+
+# Update master branch, and merge it into the current branch
+if [ "$1" == "pull-master" ]; then
+  dotfiles-git checkout master
+  dotfiles-git pull
+  dotfiles-git checkout "$machine_hostname"
+  dotfiles-git merge master
   exit 0
 fi
 
