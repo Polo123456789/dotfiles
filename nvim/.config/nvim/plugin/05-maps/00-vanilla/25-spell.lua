@@ -1,0 +1,6 @@
+vim.keymap.set('n', '<leader>se', ':setlocal spell spelllang=es_es<CR>')
+vim.keymap.set('n', '<leader>si', ':setlocal spell spelllang=en_us<CR>')
+vim.keymap.set('n', '<leader>so', ':setlocal spell!<CR>')
+vim.keymap.set('n', '<leader>sr', 'z=')
+vim.keymap.set('n', '<leader>sn', ']s')
+vim.keymap.set('n', '<leader>sd', ']sz=1')
