@@ -3,7 +3,7 @@
 
 vim.cmd [[ 
 " Load pandoc config too
-runtime! ftplugin/pandoc/*.vim
+runtime! ftplugin/pandoc/*.lua
 
 inoremap <buffer> <localleader>3 <Esc>"zY"zpVr~o<C-j>
 inoremap <buffer> <localleader>4 <Esc>"zY"zpVr^o<C-j>
