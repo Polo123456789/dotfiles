@@ -1,3 +1,7 @@
+-- File generated automatically, pending manual migration
+-- Sourced from ./plugin/10-plugin-configs/coc.vim
+
+vim.cmd [[ 
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -148,3 +152,6 @@ nnoremap <silent><nowait> ,j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> ,k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> ,p  :<C-u>CocListResume<CR>
+]]
+
+-- Generated Tue Apr 23 08:52:50 AM CST 2024

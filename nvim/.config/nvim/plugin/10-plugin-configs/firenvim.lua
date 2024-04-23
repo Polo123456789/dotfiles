@@ -1,3 +1,7 @@
+-- File generated automatically, pending manual migration
+-- Sourced from ./plugin/10-plugin-configs/firenvim.vim
+
+vim.cmd [[ 
 if exists('g:started_by_firenvim')
     set guifont=monospace:h10
 
@@ -25,3 +29,6 @@ if exists('g:started_by_firenvim')
 
 
 endif
+]]
+
+-- Generated Tue Apr 23 08:52:50 AM CST 2024

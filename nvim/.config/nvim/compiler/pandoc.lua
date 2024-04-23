@@ -1,3 +1,7 @@
+-- File generated automatically, pending manual migration
+-- Sourced from ./compiler/pandoc.vim
+
+vim.cmd [[ 
 if exists('g:current_compiler')
   finish
 endif
@@ -18,3 +22,6 @@ else
         CompilerSet makeprg=pandoc\ %\ -o\ %<.pdf
     endif
 endif
+]]
+
+-- Generated Tue Apr 23 08:52:50 AM CST 2024

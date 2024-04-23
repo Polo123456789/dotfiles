@@ -1,3 +1,7 @@
+-- File generated automatically, pending manual migration
+-- Sourced from ./colors/wombat.vim
+
+vim.cmd [[ 
 " Vim color file
 " Original Maintainer: Lars H. Nielsen (dengmao@gmail.com)
 " Last Change: 2014-07-05
@@ -78,3 +82,6 @@ hi! link NonText LineNr
 execute "set colorcolumn=81"
 " ctermbg=58 guibg=#5f5f00
 hi ColorColumn ctermfg=209 guifg=#ff875f
+]]
+
+-- Generated Tue Apr 23 08:52:50 AM CST 2024
