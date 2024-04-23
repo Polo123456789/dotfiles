@@ -1,3 +1,6 @@
+-- File generated automatically, pending manual migration
+-- Sourced from ./vimrc
+
 vim.cmd([[
 call plug#begin()
 
@@ -33,8 +36,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
-Plug 'vimwiki/vimwiki'
 Plug 'wellle/context.vim'
 
 call plug#end()
 ]])
+
+-- Generated Tue Apr 23 08:52:50 AM CST 2024
