@@ -4,38 +4,25 @@
 vim.cmd([[
 call plug#begin()
 
-" Plug 'vim-scripts/taglist.vim'
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'mattn/emmet-vim'
-" Plug 'mhinz/vim-startify'
-
-if has('nvim')
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
-else
-"   Plug 'lifepillar/vim-mucomplete'
-endif
-
-Plug 'Jorengarenar/miniSnip'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'Yggdroot/indentLine'
+Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 Plug 'dhruvasagar/vim-table-mode'
-Plug 'github/copilot.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
-Plug 'majutsushi/tagbar'
 Plug 'mbbill/undotree'
 Plug 'preservim/nerdtree'
-Plug 'prisma/vim-prisma'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax' 
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'github/copilot.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'prisma/vim-prisma'
 Plug 'wellle/context.vim'
 
 call plug#end()

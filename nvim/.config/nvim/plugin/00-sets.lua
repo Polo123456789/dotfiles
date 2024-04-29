@@ -36,13 +36,16 @@ vim.o.undolevels = 500
 vim.o.undoreload = 10000
 
 vim.o.shiftwidth = 4
-vim.o.softtabstop = 4
+vim.o.tabstop = 4
+vim.o.softtabstop = 0
 vim.o.expandtab = false
 
 vim.o.incsearch = true
 vim.o.hlsearch = false
 
 if vim.fn.has("termguicolors") then
-    vim.opt.termguicolors = true
-    vim.cmd("colorscheme wombat")
+	vim.opt.termguicolors = true
+	vim.cmd("colorscheme wombat")
 end
+
+vim.o.list = true
