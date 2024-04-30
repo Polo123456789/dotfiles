@@ -2,7 +2,7 @@
 -- Sourced from ./after/ftplugin/pandoc/load-compiler.vim
 
 vim.cmd [[ 
-compiler pandoc
+runtime! compiler/pandoc.lua
 ]]
 
 -- Generated Tue Apr 23 08:52:50 AM CST 2024
