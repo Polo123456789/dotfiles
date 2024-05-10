@@ -24,6 +24,7 @@ Plug 'github/copilot.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'prisma/vim-prisma'
 Plug 'wellle/context.vim'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 call plug#end()
 ]])
