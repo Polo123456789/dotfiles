@@ -40,7 +40,7 @@ dotfiles unstow <paquete> --argumentos
 ### Control de versiones
 
 ```sh
-dotfiles <git-cmd>
+dotfiles git <git-cmd>
 ```
 
 Agregar configuraciones existentes

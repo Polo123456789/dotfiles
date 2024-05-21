@@ -15,6 +15,33 @@ if [ ! -d "$DOTFILES_CONFIG_DIR" ]; then
   mkdir -p "$DOTFILES_CONFIG_DIR"
 fi
 
+help-msg() {
+  echo "Usage: $0 <command> [options]"
+  echo
+  echo "Commands:"
+  echo "  stow <package> [package2] ... [packagen] --args"
+  echo "    Stow the specified package(s), passing --args to stow"
+  echo
+  echo "  unstow <package> [package2] ... [packagen] --args"
+  echo "    Unstow the specified package(s), passing --args to stow"
+  echo
+  echo "  adopt <package> [package2] ... [packagen] --args"
+  echo "    Adopt the specified package(s), passing --args to stow"
+  echo
+  echo "  restow <package> [package2] ... [packagen] --args"
+  echo "    Restow the specified package(s)"
+  echo
+  echo "  branch-out"
+  echo "    Create a new branch with the machine hostname"
+  echo
+  echo "  pull-master"
+  echo "    Pull the latest changes from the master branch and rebase the current branch"
+  echo
+  echo "  git <git-command>"
+  echo "    Run a git command in the dotfiles repository"
+  echo
+}
+
 dotfiles-git() {
   git --git-dir="$dotfiles_dir/.git" --work-tree="$dotfiles_dir" "$@"
 }
@@ -35,7 +62,7 @@ stow-dependencies() {
 
   if [ -f "$dependencies_file" ]; then
     local dependencies="$(cat $dependencies_file)"
-    
+
     echo "Package $package depends on:"
     for dependency in $dependencies; do
       echo "  * $dependency"
@@ -65,7 +92,7 @@ unstow-dependencies() {
 
   if [ -f "$dependencies_file" ]; then
     local dependencies="$(cat $dependencies_file)"
-    
+
     echo "Package $package depends on:"
     for dependency in $dependencies; do
       echo "  * $dependency"
@@ -101,54 +128,58 @@ run-hook() {
   cd "$current_dir"
 }
 
-if [ "$1" == "stow" ]; then
-  shift
-  if [ -z "$(package-is-stowed $1)" ]; then
-    echo "Package $1 is already stowed"
+case "$1" in
+  "stow")
+    shift
+    if [ -z "$(package-is-stowed $1)" ]; then
+      echo "Package $1 is already stowed"
+      exit 0
+    fi
+    stow-dependencies $1
+    run-hook "$1" "pre-stow"
+    dotfiles-stow --no-folding $@
+    run-hook "$1" "post-stow"
     exit 0
-  fi
-  stow-dependencies $1
-  run-hook "$1" "pre-stow"
-  dotfiles-stow --no-folding $@
-  run-hook "$1" "post-stow"
-  exit 0
-fi
+    ;;
+  "unstow")
+    shift
+    unstow-dependencies $1
+    run-hook "$1" "pre-unstow"
+    dotfiles-stow -D $@ 2>&1 | grep -v 'BUG'
+    run-hook "$1" "post-unstow"
+    exit 0
+    ;;
+  "adopt")
+    shift
+    dotfiles-stow --adopt $@
+    exit 0
+    ;;
+  "restow")
+    shift
+    dotfiles-stow --restow $@
+    exit 0
+    ;;
+  "branch-out")
+    dotfiles-git checkout -b "$machine_hostname"
+    exit 0
+    ;;
+  "pull-master")
+    dotfiles-git checkout master
+    dotfiles-git pull
+    dotfiles-git checkout "$machine_hostname"
+    dotfiles-git rebase master
+    exit 0
+    ;;
+  "git")
+    shift
+    dotfiles-git $@
+    ;;
+  *)
+    help-msg
+    exit 1
+    ;;
+esac
 
-if [ "$1" == "unstow" ]; then
-  shift
-  unstow-dependencies $1
-  run-hook "$1" "pre-unstow"
-  dotfiles-stow -D $@ 2>&1 | grep -v 'BUG'
-  run-hook "$1" "post-unstow"
-  exit 0
-fi
 
-if [ "$1" == "adopt" ]; then
-  shift
-  dotfiles-stow --adopt $@
-  exit 0
-fi
-
-if [ "$1" == "restow" ]; then
-  shift
-  dotfiles-stow --restow $@
-  exit 0
-fi
-
-if [ "$1" == "branch-out" ]; then
-  dotfiles-git checkout -b "$machine_hostname"
-  exit 0
-fi
-
-# Update master branch, and merge it into the current branch
-if [ "$1" == "pull-master" ]; then
-  dotfiles-git checkout master
-  dotfiles-git pull
-  dotfiles-git checkout "$machine_hostname"
-  dotfiles-git merge master
-  exit 0
-fi
-
-dotfiles-git $@
 
 # vim:set softtabstop=2 shiftwidth=2 expandtab:

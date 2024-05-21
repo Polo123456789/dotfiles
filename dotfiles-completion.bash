@@ -1,3 +1,4 @@
+
 _dotfiles() {
     local dotfiles_dir="$HOME/dotfiles/"
 
@@ -5,8 +6,11 @@ _dotfiles() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    base_opts="stow unstow adopt restow add commit push pull status log diff branch-out pull-master"
+    base_opts="stow unstow adopt restow branch-out pull-master git"
     stow_opts=$(ls -d ${dotfiles_dir}/*/ | xargs -n1 basename)
+	# Not really recomended to do much more, anything more complex should be
+	# done directly
+	git_opts="status"
 
 
     if [[ ${prev} == "dotfiles" ]] ; then
@@ -19,11 +23,10 @@ _dotfiles() {
         return 0
     fi
 
-    if [[ ${prev} == "add" ]] ; then
-        # https://gist.github.com/Polo123456789/b4e08f5467f37fc75ce072db5f228fc9
-        COMPREPLY=( $(_compgen_files_relative_to $dotfiles_dir $cur) )
-        return 0
-    fi
+	if [[ ${prev} == "git" ]]; then
+		COMPREPLY=( $(compgen -W "$git_opts" -- ${cur}) )
+		return 0
+	fi
 }
 
 complete -o nospace -F _dotfiles dotfiles
