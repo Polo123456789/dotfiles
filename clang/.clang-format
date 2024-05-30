@@ -92,7 +92,7 @@ SpacesInConditionalStatement: false
 SpacesInContainerLiterals: false
 SpacesInParentheses: false
 SpacesInSquareBrackets: false
-UseTab: Never
+UseTab: Always
 ---
 
 # vim: ft=yaml
