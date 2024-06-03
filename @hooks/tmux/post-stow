@@ -1,0 +1,4 @@
+#!/bin/bash
+
+git clone https://github.com/tmux-plugins/tpm $HOME/.tmux/plugins/tpm
+echo "Remember to install tmux plugins with prefix + I"

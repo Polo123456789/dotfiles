@@ -47,7 +47,7 @@ dotfiles-git() {
 }
 
 dotfiles-stow() {
-  stow -t "$HOME" -d "$dotfiles_dir" --ignore='@.*' "$@"
+  stow -t "$HOME" -d "$dotfiles_dir" --ignore='@.*' -v "$@"
 }
 
 # If there is no output, the package is stowed
