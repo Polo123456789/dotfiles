@@ -53,7 +53,7 @@ dotfiles-stow() {
 # If there is no output, the package is stowed
 package-is-stowed() {
   local package="$1"
-  dotfiles-stow -n $1  2>&1 | grep -v "WARNING"
+  dotfiles-stow -nv $1  2>&1 | grep -v "WARNING"
 }
 
 stow-dependencies() {
