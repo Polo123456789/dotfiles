@@ -8,3 +8,5 @@
 	defaultBranch = master
 [commit]
 	template = ~/.config/git/commit-message-template
+[rerere]
+	enabled = true
