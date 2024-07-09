@@ -17,8 +17,9 @@ Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-pandoc/vim-pandoc'
-Plug 'vim-pandoc/vim-pandoc-syntax' 
+Plug 'vim-pandoc/vim-pandoc-syntax'
 
+Plug 'Jorengarenar/miniSnip'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
