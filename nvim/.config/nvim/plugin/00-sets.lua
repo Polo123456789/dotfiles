@@ -26,7 +26,6 @@ vim.o.cmdheight = 2
 vim.o.timeout = false
 vim.o.ttimeout = true
 vim.o.ttimeoutlen = 200
-vim.o.pastetoggle = "<F12>"
 vim.o.background = "dark"
 vim.o.textwidth = 80
 vim.o.lazyredraw = true
