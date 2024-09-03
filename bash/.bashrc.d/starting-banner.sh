@@ -1,2 +1,2 @@
-/home/pablo/.local/bin/cowsay-random
+$HOME/.local/bin/cowsay-random
 

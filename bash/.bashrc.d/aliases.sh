@@ -2,7 +2,6 @@ alias search-process="ps -ax | grep"
 alias exi="exit"
 alias fc="fc -e nvim"
 alias vim="nvim"
-alias ls="ls --color=auto --hyperlink"
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -CF'
