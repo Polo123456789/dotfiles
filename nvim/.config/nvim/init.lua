@@ -24,8 +24,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'github/copilot.vim'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'prisma/vim-prisma'
-Plug 'wellle/context.vim'
+"Plug 'wellle/context.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'joerdav/templ.vim'
 
 call plug#end()
 ]])
