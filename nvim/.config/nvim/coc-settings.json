@@ -1,6 +1,15 @@
 {
 	"suggest.noselect": true,
 	"emmet.includeLanguages": {
-		"gohtmltmpl": "html"
+		"gohtmltmpl": "html",
+		"templ": "html"
+	},
+	"languageserver": {
+		"templ": {
+			"command": "/home/pablo/.local/opt/go/bin/templ",
+			"args": ["lsp"],
+			"rootPatterns": ["go.mod"],
+			"filetypes": ["templ"]
+		}
 	}
 }
