@@ -1,3 +1,4 @@
-/home/pablo/.local/bin/cowsay-random
+$HOME/.local/bin/cowsay-random
 echo
-/home/pablo/scripts/check-repos
+$HOME/scripts/check-repos
+echo
