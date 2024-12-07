@@ -37,7 +37,7 @@ vim.o.undoreload = 10000
 vim.o.shiftwidth = 4
 vim.o.tabstop = 4
 vim.o.softtabstop = 0
-vim.o.expandtab = false
+vim.o.expandtab = true
 
 vim.o.incsearch = true
 vim.o.hlsearch = false
