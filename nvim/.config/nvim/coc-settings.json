@@ -6,7 +6,7 @@
 	},
 	"languageserver": {
 		"templ": {
-			"command": "/home/pablo/.local/opt/go/bin/templ",
+			"command": "$HOME/go/bin/templ",
 			"args": ["lsp"],
 			"rootPatterns": ["go.mod"],
 			"filetypes": ["templ"]
