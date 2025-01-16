@@ -1,5 +1,6 @@
 set textwidth=0
 set colorcolumn=120
+set noexpandtab
 
 function FormatTempl()
     let cursor = getpos(".")
