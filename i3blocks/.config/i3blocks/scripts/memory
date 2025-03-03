@@ -13,9 +13,9 @@ echo "RAM: $used_mem/$total_mem $used_persentage%"
 echo "R:$used_persentage%"
 
 if (( $(echo "$used_persentage < 70" | bc -l) )); then
-    echo "#ADD8E6"
+    echo "#88b8f6"
 elif (( $(echo "$used_persentage < 90" | bc -l) )); then
-    echo "#FF8000"
+    echo "#e5786d"
 else
     echo "#FF0000"
 fi

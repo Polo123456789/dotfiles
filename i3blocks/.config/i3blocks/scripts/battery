@@ -22,9 +22,9 @@ echo "B:$battery_percentage$battery_status $short_battery_time"
 
 #                                     urgent
 [ ${battery_percentage%?} -le 20 ] && exit 33
-[ ${battery_percentage%?} -le 40 ] && echo "#FF8000" && exit 0
+[ ${battery_percentage%?} -le 40 ] && echo "#e5786d" && exit 0
 
 # color
-echo "#90EE90"
+echo "#95e454"
 
 exit 0

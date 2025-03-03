@@ -8,16 +8,14 @@ echo "CPU: $cpu $temp"
 # short_text
 echo "CPU:$cpu"
 
-# Now lets do color, under 60 is #ADD8E6, under 90 is #FF8000, above 90 is #FF0000
-
 # Get just the number
 cpu_num=$(echo $cpu | cut -d'%' -f1)
 
 # Use bc for comparisons
 if (( $(echo "$cpu_num < 60" | bc -l) )); then
-    echo "#ADD8E6"
+    echo "#88b8f6"
 elif (( $(echo "$cpu_num < 90" | bc -l) )); then
-    echo "#FF8000"
+    echo "#e5786d"
 else
     echo "#FF0000"
 fi

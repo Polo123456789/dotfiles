@@ -13,14 +13,14 @@ bar {
   workspace_min_width 36
 
   colors {
-      background "#000000"
+      background "#171717"
       statusline "#93a1a1"
       separator  "#8DB580"
 
 #                        BORDER     BACKGROUND TEXT
-      focused_workspace  "#073642"  "#EAF9D9"  "#002B36"
-      active_workspace    "#002b36"  "#6B818C"  "#EAF9D9"
-      inactive_workspace   "#073642"  "#073642"  "#586e75"
-      urgent_workspace   "#dc322f"  "#dc322f"  "#fdf6e3"
+      focused_workspace  "#ffffff"  "#ffffff"  "#002B36"
+      active_workspace   "#6B818C"  "#6B818C"  "#EAF9D9"
+      inactive_workspace "#9c998e"  "#9c998e"  "#FFFFFF"
+      urgent_workspace   "#e5786d"  "#e5786d"  "#fdf6e3"
   }
 }
