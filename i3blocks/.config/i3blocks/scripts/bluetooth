@@ -15,14 +15,14 @@ if [ "$bluetooth_status" = "yes" ]; then
     if [ "$connected_devices" -gt 0 ]; then
         echo "B:$connected_devices"
         echo "B:$connected_devices"
-        echo "#1F51FF"
+        echo "#88b8f6"
     else
         echo "B"
         echo "B"
-        echo "#1F51FF"
+        echo "#88b8f6"
     fi
 else
     echo "B"
     echo "B"
-    echo "#808080"
+    echo "#9c998e"
 fi

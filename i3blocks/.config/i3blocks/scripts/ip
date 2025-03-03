@@ -5,7 +5,7 @@ device=$(ip route | grep default | awk '{print $5}' | head -n1)
 if [[ -z "$device" ]]; then
     echo "No Network"
     echo "down"
-    echo "#FF7F7F"
+    echo "#9c998e"
     exit 0
 fi
 
@@ -13,5 +13,5 @@ ip=$(ip addr show $device | grep -Po 'inet \K[\d.]+')
 
 echo "$device: $ip"
 echo $ip
-echo "#32CD32"
+echo "#95e454"
 exit 0
