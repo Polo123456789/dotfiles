@@ -6,7 +6,7 @@ volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '$1 == "Volume:" { print $5 
 if [ "$muted" = "yes" ]; then
     echo "V:Mute"
     echo "V:Mute"
-    echo "#FF0000"
+    echo "#e5786d"
     exit 0
 fi
 
