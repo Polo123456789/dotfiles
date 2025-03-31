@@ -4,6 +4,7 @@ bindsym $mod+m exec --no-startup-id "/home/pablo/scripts/change-kb-layout.sh"
 bindsym $mod+p exec "/home/pablo/scripts/run-prompt"
 bindsym $mod+shift+o exec "/home/pablo/scripts/psg-open-file.sh"
 bindsym $mod+w exec "/home/pablo/scripts/dmenu-focus"
+bindsym $mod+n exec "/home/pablo/tmp/tmp.sh"
 
 # Create a remote connection mode, r for remmina, s for ssh
 set $remote_mode "(r)emmina, (s)sh"
