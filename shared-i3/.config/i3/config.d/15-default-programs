@@ -2,7 +2,7 @@
 
 bindsym $mod+Return exec kitty bash
 bindsym Control+$mod+Return exec kitty bash -c "tmux a || tmux"
-bindsym $mod+Shift+Return exec vivaldi
+bindsym $mod+Shift+Return exec vivaldi --password-store=gnome-libsecret
 bindsym $mod+d exec --no-startup-id dmenu_run -l 20
 bindsym $mod+space exec --no-startup-id i3-dmenu-desktop --dmenu='dmenu -i -l 20'
 bindsym $mod+s exec flameshot gui

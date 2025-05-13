@@ -1,20 +1,46 @@
 #!/bin/bash
 
-df_output=$(df -h /)
-df_output=$(echo "$df_output" | tail -n 1)
-size=$(echo "$df_output" | awk '{print $2}')
-used=$(echo "$df_output" | awk '{print $3}')
-avail=$(echo "$df_output" | awk '{print $4}')
-percent=$(echo "$df_output" | awk '{print $5}' | sed 's/%//')
+set -euo pipefail
 
-echo "Disk: $used/$size ($percent%)"
-echo "/:$avail"
+if command -v btrfs &> /dev/null; then
+    btrfs_output=$(btrfs fi usage / 2> /dev/null | head -n 10 )
+    size=$(echo "$btrfs_output" | grep "Device size:" | awk '{print $3}')
+    used=$(echo "$btrfs_output" | grep "Used:" | awk '{print $2}')
+    avail=$(echo "$btrfs_output" | grep "Free (estimated):" | awk '{print $3}')
+    percent=$(echo "scale=0; ($used * 100)/$size" | sed 's/GiB//g' | bc)
+
+    echo "Disk: $used/$size ($percent%)"
+    echo "/:$avail"
 
 
-if (( $(echo "$percent < 80" | bc -l) )); then
-    echo "#FFFFFF"
-elif (( $(echo "$percent < 90" | bc -l) )); then
-    echo "#FF8000"
+    if (( $(echo "$percent < 80" | bc -l) )); then
+        echo "#FFFFFF"
+    elif (( $(echo "$percent < 90" | bc -l) )); then
+        echo "#FF8000"
+    else
+        echo "#FF0000"
+    fi
+
+
 else
-    echo "#FF0000"
+    # Assume ext4
+    df_output=$(df -h /)
+    df_output=$(echo "$df_output" | tail -n 1)
+    size=$(echo "$df_output" | awk '{print $2}')
+    used=$(echo "$df_output" | awk '{print $3}')
+    avail=$(echo "$df_output" | awk '{print $4}')
+    percent=$(echo "$df_output" | awk '{print $5}' | sed 's/%//')
+
+    echo "Disk: $used/$size ($percent%)"
+    echo "/:$avail"
+
+
+    if (( $(echo "$percent < 80" | bc -l) )); then
+        echo "#FFFFFF"
+    elif (( $(echo "$percent < 90" | bc -l) )); then
+        echo "#FF8000"
+    else
+        echo "#FF0000"
+    fi
 fi
+
