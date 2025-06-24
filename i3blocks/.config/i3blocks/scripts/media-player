@@ -3,11 +3,11 @@
 state=$(playerctl status 2> /dev/null)
 
 if [[ $state = "Playing" ]]; then
-    echo ""
-    echo ""
+    echo ">"
+    echo ">"
 elif [[ $state = "Paused" ]]; then
-    echo ""
-    echo ""
+    echo "||"
+    echo "||"
 else
     echo ""
     echo ""
