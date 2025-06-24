@@ -2,5 +2,4 @@
 
 # No system wide config, only I need this
 xset dpms 0 0 300
-xinput set-prop "ELAN1200:00 04F3:303E Touchpad" "libinput Natural Scrolling Enabled" 1
-xinput set-prop "ELAN1200:00 04F3:303E Touchpad" "libinput Tapping Enabled" 1
+xrandr --output eDP --dpi 120
