@@ -32,3 +32,8 @@ alert-discord() {
     last_command=$(history | tail -n 1 | sed -e 's/^\s*[0-9]\+\s*//;s/[;&|]\s*alert-discord$//')
     curl -X POST -H "Content-Type: application/json" -d "{\"content\": \"Command \`$last_command\` has finished.\"}" $WEBHOOK
 }
+
+alias skateg="skate get"
+alias mariadb-mb='mariadb --skip-ssl -h $(skateg host@mb) -P $(skateg port@mb) -u $(skateg username@mb) --password=$(skateg password@mb) $(skateg database@mb)'
+alias mariadb-yollty='mariadb --skip-ssl -h $(skateg host@yollty) -P $(skateg port@yollty) -u $(skateg username@yollty) --password=$(skateg password@yollty) $(skateg database@yollty)'
+alias open="xdg-open"
