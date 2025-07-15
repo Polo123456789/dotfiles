@@ -23,6 +23,7 @@ Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'prisma/vim-prisma'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'joerdav/templ.vim'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 ]])
