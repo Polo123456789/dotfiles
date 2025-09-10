@@ -36,4 +36,5 @@ alert-discord() {
 alias skateg="skate get"
 alias mariadb-mb='mariadb --skip-ssl -h $(skateg host@mb) -P $(skateg port@mb) -u $(skateg username@mb) --password=$(skateg password@mb) $(skateg database@mb)'
 alias mariadb-yollty='mariadb --skip-ssl -h $(skateg host@yollty) -P $(skateg port@yollty) -u $(skateg username@yollty) --password=$(skateg password@yollty) $(skateg database@yollty)'
+alias mariadb-catalogo='mariadb --skip-ssl -h $(skateg host@catalogo) -P $(skateg port@catalogo) -u $(skateg username@catalogo) --password=$(skateg password@catalogo) $(skateg database@catalogo)'
 alias open="xdg-open"
