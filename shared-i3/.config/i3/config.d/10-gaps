@@ -1,6 +1,6 @@
 # vim:ft=i3config
 
-gaps inner 6
+gaps inner 0
 gaps outer 0
 smart_gaps off
 

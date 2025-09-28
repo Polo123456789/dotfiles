@@ -3,19 +3,9 @@
 bindsym $mod+m exec --no-startup-id "/home/pablo/scripts/change-kb-layout.sh"
 bindsym $mod+p exec "/home/pablo/scripts/run-prompt"
 bindsym $mod+shift+o exec "/home/pablo/scripts/psg-open-file.sh"
-bindsym $mod+w exec "/home/pablo/scripts/dmenu-focus"
+bindsym $mod+shift+i exec "/home/pablo/scripts/quick-pacman"
 bindsym $mod+n exec "/home/pablo/tmp/tmp.sh"
-
-# Create a remote connection mode, r for remmina, s for ssh
-set $remote_mode "(r)emmina, (s)sh"
-
-mode $remote_mode {
-    bindsym r exec "/home/pablo/scripts/remmina-connect-hamachi"; mode "default"
-    bindsym s exec "/home/pablo/scripts/ssh-connect-host"; mode "default"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-
-bindsym $mod+$alt+r mode $remote_mode
+bindsym $mod+$alt+r exec "/home/pablo/scripts/remmina-connect-hamachi"; mode "default"
 bindsym $mod+$alt+k exec "$HOME/scripts/dmenu-kill"
 bindsym $mod+$alt+b exec "$HOME/scripts/dmenu-bluetooth-toggle-connection"
+bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort

@@ -2,8 +2,8 @@
 
 set $floating_term_cmd kitty --class psFloatingControl
 
-for_window [class="psFloatingControl"] floating enable 
-for_window [class="psFloatingControl"] resize set 800 600
+for_window [class="psFloatingControl"] floating enable
+for_window [class="psFloatingControl"] resize set 1000 800
 for_window [class="psFloatingControl"] move position center
 
 bindsym $mod+Shift+b exec $floating_term_cmd bluetoothctl
