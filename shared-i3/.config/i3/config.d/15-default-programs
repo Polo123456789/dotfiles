@@ -2,7 +2,12 @@
 
 bindsym $mod+Return exec kitty bash
 bindsym Control+$mod+Return exec kitty bash -c "tmux a || tmux"
+
 bindsym $mod+Shift+Return exec vivaldi --password-store=gnome-libsecret
+
 bindsym $mod+space exec --no-startup-id rofi -show combi
+
 bindsym $mod+s exec flameshot gui
 bindsym Print exec flameshot gui
+
+bindsym $mod+e exec thunderbird

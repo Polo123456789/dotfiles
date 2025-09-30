@@ -8,4 +8,4 @@ bindsym $mod+n exec "/home/pablo/tmp/tmp.sh"
 bindsym $mod+$alt+r exec "/home/pablo/scripts/remmina-connect-hamachi"; mode "default"
 bindsym $mod+$alt+k exec "$HOME/scripts/dmenu-kill"
 bindsym $mod+$alt+b exec "$HOME/scripts/dmenu-bluetooth-toggle-connection"
-bindsym $mod+c exec rofi -show calc -modi calc -no-show-match -no-sort
+bindsym $mod+c exec   rofi -show calc -modi calc -no-show-match -no-sort -calc-command "echo -n '{result}' | xclip -selection clipboard"
