@@ -25,6 +25,10 @@ interval=7200
 command=$HOME/.config/i3blocks/scripts/ip
 interval=5
 
+[bandwidth]
+command=$HOME/.config/i3blocks/scripts/bandwidth
+interval=5
+
 [battery]
 command=$HOME/.config/i3blocks/scripts/battery
 interval=30

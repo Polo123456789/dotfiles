@@ -16,7 +16,7 @@ case $battery_status in
 esac
 
 # full_text
-echo "Bat: $battery_percentage$battery_status $battery_time"
+echo "Bat:$battery_percentage$battery_status $battery_time"
 # short_text
 echo "B:$battery_percentage$battery_status $short_battery_time"
 

@@ -9,7 +9,7 @@ if command -v btrfs &> /dev/null; then
     avail=$(echo "$btrfs_output" | grep "Free (estimated):" | awk '{print $3}')
     percent=$(echo "scale=0; ($used * 100)/$size" | sed 's/GiB//g' | bc)
 
-    echo "Disk: $used/$size ($percent%)"
+    echo "Disk:$used/$size($percent%)"
     echo "/:$avail"
 
 
@@ -31,7 +31,7 @@ else
     avail=$(echo "$df_output" | awk '{print $4}')
     percent=$(echo "$df_output" | awk '{print $5}' | sed 's/%//')
 
-    echo "Disk: $used/$size ($percent%)"
+    echo "Disk:$used/$size($percent%)"
     echo "/:$avail"
 
 

@@ -11,7 +11,7 @@ fi
 
 ip=$(ip addr show $device | grep -Po 'inet \K[\d.]+')
 
-echo "$device: $ip"
+echo "$device:$ip"
 echo $ip
 echo "#95e454"
 exit 0

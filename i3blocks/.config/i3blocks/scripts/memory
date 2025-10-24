@@ -9,7 +9,7 @@ used_num=$(free -b | grep Mem | awk '{print $3}')
 
 used_persentage=$(echo "scale=2; $used_num/$total_num*100" | bc | sed 's/\..*//g')
 
-echo "RAM: $used_mem/$total_mem $used_persentage%"
+echo "RAM:$used_mem/$total_mem $used_persentage%"
 echo "R:$used_persentage%"
 
 if (( $(echo "$used_persentage < 70" | bc -l) )); then
