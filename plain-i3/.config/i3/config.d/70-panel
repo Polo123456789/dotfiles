@@ -5,7 +5,7 @@ bindsym $mod+i bar mode toggle
 bar {
   position top
   mode dock
-  font pango:monospace 9
+  font pango:Monocraft 8
   separator_symbol " "
   status_command i3blocks
   tray_output primary
