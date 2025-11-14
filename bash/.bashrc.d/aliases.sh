@@ -10,6 +10,10 @@ alias start="kitty"
 
 alias ..="cd .."
 
+alias :wq="exit"
+alias :qa="exit"
+alias :q="exit"
+
 alias today="date -Idate"
 alias today-entry="nvim $(date -Idate).md"
 
