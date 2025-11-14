@@ -152,6 +152,8 @@ nnoremap <silent><nowait> ,j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> ,k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> ,p  :<C-u>CocListResume<CR>
+
+nnoremap <silent><nowait> ,r :<C-u>CocRestart<CR>
 ]]
 
 -- Generated Tue Apr 23 08:52:50 AM CST 2024

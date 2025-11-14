@@ -48,4 +48,4 @@ if vim.fn.has("termguicolors") then
 end
 
 vim.o.list = true
-vim.o.foldmethod = "marker"
+vim.o.foldmethod = "syntax"
