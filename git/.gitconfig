@@ -10,3 +10,5 @@
 	template = ~/.config/git/commit-message-template
 [rerere]
 	enabled = true
+[diff]
+    external = difft

@@ -23,12 +23,12 @@ vim.api.nvim_create_user_command('AskOpenCode', function()
         local escaped = vim.fn.shellescape(full)
 
         if vim.env.TMUX then
-            local cmd = 'tmux new-window ' .. opencode_bin .. ' -p ' .. escaped
+            local cmd = 'tmux new-window ' .. opencode_bin .. ' --agent single-file-editor -p ' .. escaped
             vim.fn.jobstart(cmd, { detach = true })
             return
         end
 
-        vim.api.nvim_command('terminal opencode -p ' .. escaped)
+        vim.api.nvim_command('terminal opencode --agent single-file-editor -p ' .. escaped)
     end)
 end, {})
 
