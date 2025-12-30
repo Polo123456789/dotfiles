@@ -7,7 +7,7 @@ for_window [class="psFloatingControl"] resize set 1000 800
 for_window [class="psFloatingControl"] move position center
 
 bindsym $mod+Shift+b exec $floating_term_cmd bluetoothctl
-bindsym $mod+Shift+a exec pavucontrol --class psFloatingControl
+bindsym $mod+Shift+a exec pavucontrol
 bindsym $mod+Shift+w exec $floating_term_cmd nmtui
 bindsym $mod+$alt+Return exec $floating_term_cmd sh -c 'tmux attach -t tmp || tmux new -s tmp'
 bindsym $mod+$alt+c exec $floating_term_cmd sh -c 'tmux attach -t musica || tmux new -s musica "cmus"'
