@@ -3,6 +3,7 @@ Checks:
 readability-*,cert-*,clang-analyzer-*,concurrency-*,hicpp-*,portability-*,
 -modernize-use-trailing-return-type,-modernize-redundant-void-arg,
 -readability-implicit-bool-conversion,-bugprone-exception-escape,
--readability-identifier-length'
+-readability-identifier-length,-misc-non-private-member-variables-in-classes,
+-misc-use-anonymous-namespace'
 
 FormatStyle: 'file'

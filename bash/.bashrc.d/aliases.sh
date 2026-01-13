@@ -43,3 +43,11 @@ alias mariadb-mb='mariadb --skip-ssl -h $(skateg host@mb) -P $(skateg port@mb) -
 alias mariadb-yollty='mariadb --skip-ssl -h $(skateg host@yollty) -P $(skateg port@yollty) -u $(skateg username@yollty) --password=$(skateg password@yollty) $(skateg database@yollty)'
 alias mariadb-catalogo='mariadb --skip-ssl -h $(skateg host@catalogo) -P $(skateg port@catalogo) -u $(skateg username@catalogo) --password=$(skateg password@catalogo) $(skateg database@catalogo)'
 alias open="xdg-open"
+
+
+# JJ Workflow
+alias jjn='jj new'
+alias jjs='jj squash'
+jjd() {
+    jj describe -m "$*"
+}
