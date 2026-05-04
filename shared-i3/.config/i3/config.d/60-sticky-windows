@@ -1,3 +1,4 @@
 # vim:ft=i3config
 
 for_window [window_role="PictureInPicture"] sticky enable
+for_window [class="kdeconnect.daemon"] floating enable; fullscreen disable; resize set width 1920 height 1080; move absolute position center
