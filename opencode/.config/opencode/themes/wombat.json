@@ -1,0 +1,221 @@
+{
+  "$schema": "https://opencode.ai/theme.json",
+  "defs": {
+    "wombatBg": "#242424",
+    "wombatPanel": "#303030",
+    "wombatSurface": "#3a3a3a",
+    "wombatSurface2": "#444444",
+    "wombatComment": "#9c998e",
+    "wombatMuted": "#857b6f",
+    "wombatBlue": "#88b8f6",
+    "wombatCyan": "#5fafd7",
+    "wombatGreen": "#95e454",
+    "wombatLime": "#cae982",
+    "wombatYellow": "#d4d987",
+    "wombatOrange": "#e5786d",
+    "wombatPurple": "#d787ff",
+    "wombatAccent": "#eae788"
+  },
+  "theme": {
+    "primary": {
+      "dark": "wombatCyan",
+      "light": "wombatCyan"
+    },
+    "secondary": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "accent": {
+      "dark": "wombatAccent",
+      "light": "wombatAccent"
+    },
+    "error": {
+      "dark": "#ff5f55",
+      "light": "#ff5f55"
+    },
+    "warning": {
+      "dark": "wombatOrange",
+      "light": "wombatOrange"
+    },
+    "success": {
+      "dark": "wombatGreen",
+      "light": "wombatGreen"
+    },
+    "info": {
+      "dark": "wombatCyan",
+      "light": "wombatCyan"
+    },
+    "text": {
+      "dark": "#e3e0d7",
+      "light": "#e3e0d7"
+    },
+    "textMuted": {
+      "dark": "wombatComment",
+      "light": "wombatComment"
+    },
+    "background": {
+      "dark": "none",
+      "light": "none"
+    },
+    "backgroundPanel": {
+      "dark": "wombatPanel",
+      "light": "wombatPanel"
+    },
+    "backgroundElement": {
+      "dark": "wombatSurface",
+      "light": "wombatSurface"
+    },
+    "border": {
+      "dark": "wombatSurface2",
+      "light": "wombatSurface2"
+    },
+    "borderActive": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "borderSubtle": {
+      "dark": "wombatPanel",
+      "light": "wombatPanel"
+    },
+    "diffAdded": {
+      "dark": "wombatGreen",
+      "light": "wombatGreen"
+    },
+    "diffRemoved": {
+      "dark": "wombatOrange",
+      "light": "wombatOrange"
+    },
+    "diffContext": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "diffHunkHeader": {
+      "dark": "wombatSurface2",
+      "light": "wombatSurface2"
+    },
+    "diffHighlightAdded": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "diffHighlightRemoved": {
+      "dark": "#e5786d",
+      "light": "#e5786d"
+    },
+    "diffAddedBg": {
+      "dark": "#2a0d6a",
+      "light": "#2a0d6a"
+    },
+    "diffRemovedBg": {
+      "dark": "#3e3969",
+      "light": "#3e3969"
+    },
+    "diffContextBg": {
+      "dark": "#382a37",
+      "light": "#382a37"
+    },
+    "diffLineNumber": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "diffAddedLineNumberBg": {
+      "dark": "#2a0d6a",
+      "light": "#2a0d6a"
+    },
+    "diffRemovedLineNumberBg": {
+      "dark": "#3e3969",
+      "light": "#3e3969"
+    },
+    "markdownText": {
+      "dark": "#e3e0d7",
+      "light": "#e3e0d7"
+    },
+    "markdownHeading": {
+      "dark": "wombatCyan",
+      "light": "wombatCyan"
+    },
+    "markdownLink": {
+      "dark": "wombatBlue",
+      "light": "wombatBlue"
+    },
+    "markdownLinkText": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "markdownCode": {
+      "dark": "wombatGreen",
+      "light": "wombatGreen"
+    },
+    "markdownBlockQuote": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "markdownEmph": {
+      "dark": "wombatOrange",
+      "light": "wombatOrange"
+    },
+    "markdownStrong": {
+      "dark": "wombatAccent",
+      "light": "wombatAccent"
+    },
+    "markdownHorizontalRule": {
+      "dark": "wombatMuted",
+      "light": "wombatMuted"
+    },
+    "markdownListItem": {
+      "dark": "wombatCyan",
+      "light": "wombatCyan"
+    },
+    "markdownListEnumeration": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "markdownImage": {
+      "dark": "wombatBlue",
+      "light": "wombatBlue"
+    },
+    "markdownImageText": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "markdownCodeBlock": {
+      "dark": "#e3e0d7",
+      "light": "#e3e0d7"
+    },
+    "syntaxComment": {
+      "dark": "wombatComment",
+      "light": "wombatComment"
+    },
+    "syntaxKeyword": {
+      "dark": "wombatBlue",
+      "light": "wombatBlue"
+    },
+    "syntaxFunction": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "syntaxVariable": {
+      "dark": "wombatLime",
+      "light": "wombatLime"
+    },
+    "syntaxString": {
+      "dark": "wombatGreen",
+      "light": "wombatGreen"
+    },
+    "syntaxNumber": {
+      "dark": "wombatOrange",
+      "light": "wombatOrange"
+    },
+    "syntaxType": {
+      "dark": "wombatYellow",
+      "light": "wombatYellow"
+    },
+    "syntaxOperator": {
+      "dark": "wombatBlue",
+      "light": "wombatBlue"
+    },
+    "syntaxPunctuation": {
+      "dark": "#e3e0d7",
+      "light": "#e3e0d7"
+    }
+  }
+}
