@@ -1,5 +1,6 @@
 local ROOT_MARKERS = { '.git', '.hg', 'package.json', 'stylua.toml', '.luarc.json', '.luarc.jsonc' }
 local VISUAL_BLOCK = string.char(22)
+local DEFAULT_AGENT = 'small-build'
 local STARTUP_DELAY_MS = 4000
 local READY_RETRIES = 40
 local READY_DELAY_MS = 200
@@ -281,7 +282,7 @@ local function start_opencode_nvim(opencode_bin, root, port)
     vim.bo[bufnr].buflisted = false
     vim.bo[bufnr].bufhidden = 'hide'
 
-    local job_id = vim.fn.termopen({ opencode_bin, '--port', tostring(port) }, {
+    local job_id = vim.fn.termopen({ opencode_bin, '--port', tostring(port), '--agent', DEFAULT_AGENT }, {
         cwd = root,
         env = { OPENCODE_CALLER = 'nvim' },
         on_exit = function()
@@ -321,7 +322,12 @@ local function start_opencode_nvim(opencode_bin, root, port)
 end
 
 local function start_opencode_tmux(opencode_bin, root, port)
-    local command = string.format('OPENCODE_CALLER=nvim %s --port %d', vim.fn.shellescape(opencode_bin), port)
+    local command = string.format(
+        'OPENCODE_CALLER=nvim %s --port %d --agent %s',
+        vim.fn.shellescape(opencode_bin),
+        port,
+        vim.fn.shellescape(DEFAULT_AGENT)
+    )
     local result = vim.system({
         'tmux',
         'new-window',
