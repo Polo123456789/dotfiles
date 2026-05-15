@@ -3,7 +3,7 @@ export const NotificationPlugin = async ({ project, client, $, directory, worktr
     event: async ({ event }) => {
       // Send notification on session completion
       if (event.type === "session.idle") {
-        await $`notify-send Opencode "Waiting for user feedback"`
+        // await $`notify-send Opencode "Waiting for user feedback"`
       }
     },
   }
