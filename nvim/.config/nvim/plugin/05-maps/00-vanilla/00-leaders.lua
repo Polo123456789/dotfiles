@@ -1,4 +1,2 @@
-vim.cmd([[
-let maplocalleader = "\-"
-let mapleader = "\<Space>"
-]])
+vim.g.maplocalleader = '-'
+vim.g.mapleader = ' '
