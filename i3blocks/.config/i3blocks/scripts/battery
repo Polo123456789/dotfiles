@@ -21,7 +21,7 @@ echo "Bat:$battery_percentage$battery_status $battery_time"
 echo "B:$battery_percentage$battery_status $short_battery_time"
 
 #                                     urgent
-[ ${battery_percentage%?} -le 20 ] && exit 33
+[ ${battery_percentage%?} -le 25 ] && exit 33
 [ ${battery_percentage%?} -le 40 ] && echo "#e5786d" && exit 0
 
 # color
