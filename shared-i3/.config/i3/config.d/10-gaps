@@ -1,7 +1,7 @@
 # vim:ft=i3config
 
-gaps inner 0
-gaps outer 0
+gaps inner 3
+gaps outer 3
 smart_gaps off
 
 bindsym $mod+minus gaps inner current minus 6
