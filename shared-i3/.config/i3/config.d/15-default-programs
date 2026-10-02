@@ -11,3 +11,5 @@ bindsym $mod+s exec flameshot gui
 bindsym Print exec flameshot gui
 
 bindsym $mod+e exec thunderbird
+
+bindsym $mod+$alt+t exec $floating_term_cmd tasks
