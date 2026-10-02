@@ -4,7 +4,6 @@ bindsym $mod+Shift+b exec $floating_term_cmd bluetoothctl
 bindsym $mod+Shift+a exec $floating_term_cmd pactl-tui
 bindsym $mod+Shift+w exec $floating_term_cmd nmtui
 bindsym $mod+$alt+Return exec $floating_term_cmd sh -c 'tmux attach -t tmp || tmux new -s tmp'
-bindsym $mod+$alt+c exec $floating_term_cmd sh -c 'tmux attach -t musica || tmux new -s musica "cmus"'
 bindsym $mod+Shift+p exec $HOME/scripts/dmenu-pass copy
 
 set $udiskie_mode "udiskie: (m)ount, (u)nmount"
