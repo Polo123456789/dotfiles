@@ -121,3 +121,47 @@ dotfiles pull-master
 ```
 
 Para traer los cambios de la rama `master` a la rama del hostname.
+
+### Escritorio plain-i3
+
+```sh
+dotfiles stow plain-i3 --simulate  # Comprueba enlaces sin ejecutar hooks
+dotfiles stow plain-i3             # Instala paquetes, enlaces y preferencias
+```
+
+Aceptar las dependencias para incluir Kitty, Bash, tmux, Synth Shell, GTK y Qt.
+El hook de `plain-i3` instala los paquetes de `plain-i3/@packages` que falten
+mediante `sudo pacman -S --needed`; pacman conserva su confirmación habitual.
+No instala paquetes de AUR ni actualiza todo el sistema.
+
+La instalación comprueba conflictos antes de ejecutar los hooks del paquete y
+se detiene si falla un hook, una dependencia o Stow. No adopta archivos locales.
+Los paquetes ya enlazados también revisan sus dependencias. En ese caso, o con
+`restow`, se ejecutan `pre-restow` y `post-restow` si existen. Los hooks antiguos
+`pre-stow` y `post-stow` se reservan para enlaces nuevos. La simulación no ejecuta
+ningún hook, así que no comprueba ni instala paquetes del sistema.
+
+El hook de `plain-i3` aplica Adwaita oscuro, preferencia oscura y Papirus Dark;
+conserva el cursor. Guarda los valores previos una sola vez en
+`~/.config/dotfiles/plain-i3/*.before`. Para restaurarlos manualmente:
+
+```sh
+for key in gtk-theme color-scheme icon-theme; do
+  gsettings set org.gnome.desktop.interface "$key" \
+    "$(cat "$HOME/.config/dotfiles/plain-i3/$key.before")"
+done
+```
+
+Requiere ejecutar la instalación como tu usuario dentro de una sesión con D-Bus.
+Monocraft, Nitrogen, el script de Synth Shell y los scripts personales de
+`~/scripts` siguen siendo externos: el hook avisa si faltan. Vivaldi requiere importar el ZIP guardado en el repo.
+Las variables de Qt se aplican en el próximo inicio de sesión mediante `.xprofile`.
+No se reinician aplicaciones automáticamente. Reinstalar vuelve a aplicar las
+preferencias; desinstalar los enlaces no elimina paquetes del sistema ni restaura
+preferencias automáticamente.
+
+Pruebas del instalador, con hogares temporales y sin modificar la sesión:
+
+```sh
+PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s @tests -v
+```

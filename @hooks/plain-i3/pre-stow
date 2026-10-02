@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+repo="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+if ! command -v pacman >/dev/null; then
+  echo 'plain-i3: instalación de paquetes disponible para Arch (pacman).' >&2
+  exit 1
+fi
+missing=()
+while IFS= read -r package; do
+  [[ -z "$package" || "$package" == \#* ]] && continue
+  pacman -Q "$package" >/dev/null 2>&1 || missing+=("$package")
+done < "$repo/plain-i3/@packages"
+if ((${#missing[@]})); then
+  printf 'plain-i3: instalar paquetes faltantes: %s\n' "${missing[*]}"
+  sudo pacman -S --needed "${missing[@]}"
+fi

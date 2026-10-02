@@ -28,7 +28,8 @@ ajustes de comportamiento que estaban activos, con colores en un archivo aparte.
 
 Paquetes: `shared-i3`, `plain-i3`, `i3blocks`, `kitty`, `rofi`, `dunst`,
 `tmux`, `synth-shell`, `gtk` y `qt`.
-`plain-i3` declara Rofi y Dunst como dependencias para el comando `dotfiles stow`.
+`dotfiles stow plain-i3` instala las dependencias de configuración y ejecuta
+los hooks de paquetes de Arch y preferencias. Ver el [README principal](../../README.md#escritorio-plain-i3).
 Los archivos locales existentes deben incorporarse o respaldarse antes de
 instalar sus enlaces con Stow.
 

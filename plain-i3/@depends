@@ -4,3 +4,6 @@ rofi
 dunst
 gtk
 qt
+kitty
+tmux
+synth-shell

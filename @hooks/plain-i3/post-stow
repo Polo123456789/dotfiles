@@ -1,0 +1,33 @@
+#!/bin/bash
+set -euo pipefail
+repo="$(cd -- "$(dirname -- "$0")/../.." && pwd)"
+for file in .config/gtk-3.0/settings.ini .config/gtk-4.0/gtk.css .config/kdeglobals .config/kitty/current-theme.conf .config/tmux/wombat.conf; do
+  [[ -e "$HOME/$file" ]] || { printf 'Falta configuración: ~/%s (aceptar dependencias).\n' "$file" >&2; exit 1; }
+done
+state="${DOTFILES_CONFIG_DIR:-$HOME/.config/dotfiles}/plain-i3"
+mkdir -p "$state"
+chmod 700 "$state"
+schema=org.gnome.desktop.interface
+keys=(gtk-theme color-scheme icon-theme)
+values=(Adwaita-dark prefer-dark Papirus-Dark)
+for i in "${!keys[@]}"; do
+  key="${keys[$i]}"
+  if [[ ! -f "$state/$key.before" ]]; then
+    gsettings get "$schema" "$key" > "$state/$key.before"
+  fi
+  gsettings set "$schema" "$key" "${values[$i]}"
+  actual=$(gsettings get "$schema" "$key")
+  [[ "$actual" == "'${values[$i]}'" ]] || { echo "No se pudo aplicar $key" >&2; exit 1; }
+done
+printf 'plain-i3: Wombat y Papirus Dark configurados.\n'
+command -v nitrogen >/dev/null || echo 'Pendiente: instalar nitrogen para restaurar el fondo.'
+[[ -f "$HOME/.config/synth-shell/synth-shell-prompt.sh" ]] || echo 'Pendiente: instalar Synth Shell; este repo contiene su configuración.' 
+if ! fc-match -f '%{family}' Monocraft | grep -qi monocraft; then
+  echo 'Pendiente: instalar Monocraft (fuente usada por el escritorio).'
+fi
+for script in i3-lock-with-screenshot psbacklight dmenu-pass udiskie-dmenu shut-up; do
+  [[ -x "$HOME/scripts/$script" ]] || printf 'Pendiente: ~/scripts/%s\n' "$script"
+done
+printf 'Qt: las variables de .xprofile se aplican al iniciar una sesión nueva.\n'
+printf 'Vivaldi: importar manualmente %s/@themes/wombat/vivaldi/Wombat-Blue.zip\n' "$repo"
+printf 'Respaldo de preferencias: %s\n' "$state"

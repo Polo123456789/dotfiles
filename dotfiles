@@ -1,6 +1,6 @@
 #!/bin/bash
 
-dotfiles_script="$0"
+dotfiles_script="$(realpath "$0")"
 dotfiles_dir="$HOME/dotfiles"
 hooks_dir="$dotfiles_dir/@hooks"
 
@@ -53,7 +53,7 @@ dotfiles-stow() {
 # If there is no output, the package is stowed
 package-is-stowed() {
   local package="$1"
-  dotfiles-stow -nv $1  2>&1 | grep -v "WARNING"
+  dotfiles-stow -n --verbose=1 "$package" 2>&1 | grep -v "WARNING"
 }
 
 stow-dependencies() {
@@ -61,7 +61,8 @@ stow-dependencies() {
   local dependencies_file="$dotfiles_dir/$package/@depends"
 
   if [ -f "$dependencies_file" ]; then
-    local dependencies="$(cat $dependencies_file)"
+    local dependencies
+    dependencies="$(cat "$dependencies_file")" || return $?
 
     echo "Package $package depends on:"
     for dependency in $dependencies; do
@@ -77,11 +78,7 @@ stow-dependencies() {
 
     echo "Going into dependencies:"
     for dependency in $dependencies; do
-      if [ -z "$(package-is-stowed $dependency)" ]; then
-        echo "Dependency $dependency is already stowed"
-      else
-        $dotfiles_script stow $dependency
-      fi
+      "$dotfiles_script" stow "$dependency" "${stow_options[@]}" || return $?
     done
   fi
 }
@@ -91,7 +88,8 @@ unstow-dependencies() {
   local dependencies_file="$dotfiles_dir/$package/@depends"
 
   if [ -f "$dependencies_file" ]; then
-    local dependencies="$(cat $dependencies_file)"
+    local dependencies
+    dependencies="$(cat "$dependencies_file")" || return $?
 
     echo "Package $package depends on:"
     for dependency in $dependencies; do
@@ -107,57 +105,84 @@ unstow-dependencies() {
 
     echo "Going into dependencies:"
     for dependency in $dependencies; do
-      if [ -n "$(package-is-stowed $dependency)" ]; then
+      if [ -n "$(package-is-stowed "$dependency")" ]; then
         echo "Dependency $dependency is not stowed"
       else
-        $dotfiles_script unstow $dependency
+        "$dotfiles_script" unstow "$dependency"
       fi
     done
   fi
 }
 
-run-hook() {
+run-hook() (
   local package="$1"
   local hook="$2"
-  local current_dir="$(pwd)"
-
-  cd "$HOME"
+  cd "$HOME" || exit
   if [ -f "$hooks_dir/$package/$hook" ]; then
-      "$hooks_dir/$package/$hook"
+    "$hooks_dir/$package/$hook"
   fi
-  cd "$current_dir"
+)
+
+install-packages() {
+  local action="$1" package hook_action arg dry_run=false
+  shift
+  local -a packages=() stow_options=()
+  for arg in "$@"; do
+    case "$arg" in
+      -n|--simulate) dry_run=true; stow_options+=("$arg") ;;
+      -*) stow_options+=("$arg") ;;
+      *) packages+=("$arg") ;;
+    esac
+  done
+  if [ "${#packages[@]}" -eq 0 ]; then
+    echo "Specify a package" >&2
+    return 1
+  fi
+  if [ "$action" = restow ]; then
+    stow_options+=(--restow)
+  fi
+  for package in "${packages[@]}"; do
+    [ -d "$dotfiles_dir/$package" ] || { echo "Unknown package: $package" >&2; return 1; }
+    # Detect file conflicts before hooks can install packages or change preferences.
+    dotfiles-stow --simulate --no-folding "${stow_options[@]}" "$package" || return $?
+    if "$dry_run"; then
+      stow-dependencies "$package" || return $?
+      continue
+    fi
+    hook_action=stow
+    if [ "$action" = restow ] || [ -z "$(package-is-stowed "$package")" ]; then
+      hook_action=restow
+    fi
+    run-hook "$package" "pre-$hook_action" || return $?
+    stow-dependencies "$package" || return $?
+    dotfiles-stow --no-folding "${stow_options[@]}" "$package" || return $?
+    run-hook "$package" "post-$hook_action" || return $?
+  done
 }
 
 case "$1" in
   "stow")
     shift
-    if [ -z "$(package-is-stowed $1)" ]; then
-      echo "Package $1 is already stowed"
-      exit 0
-    fi
-    stow-dependencies $1
-    run-hook "$1" "pre-stow"
-    dotfiles-stow --no-folding $@
-    run-hook "$1" "post-stow"
-    exit 0
+    install-packages stow "$@"
+    exit $?
     ;;
   "unstow")
     shift
-    unstow-dependencies $1
+    unstow-dependencies "$1"
     run-hook "$1" "pre-unstow"
-    dotfiles-stow -D $@ 2>&1 | grep -v 'BUG'
+    dotfiles-stow -D "$@" 2>&1 | grep -v 'BUG'
     run-hook "$1" "post-unstow"
     exit 0
     ;;
   "adopt")
     shift
-    dotfiles-stow --adopt $@
+    dotfiles-stow --adopt "$@"
     exit 0
     ;;
   "restow")
     shift
-    dotfiles-stow --restow $@
-    exit 0
+    install-packages restow "$@"
+    exit $?
     ;;
   "branch-out")
     dotfiles-git checkout -b "$machine_hostname"
@@ -172,7 +197,7 @@ case "$1" in
     ;;
   "git")
     shift
-    dotfiles-git $@
+    dotfiles-git "$@"
     ;;
   *)
     help-msg
