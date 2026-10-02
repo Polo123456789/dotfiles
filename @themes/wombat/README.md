@@ -57,7 +57,7 @@ los formatos y atajos existentes. Cmus queda fuera del tema.
 ## Aplicaciones GTK y Qt
 
 `gtk` añade colores a Adwaita en GTK 3 y GTK 4, incluyendo las variables
-públicas de Libadwaita. Conserva los iconos y las fuentes de las aplicaciones.
+públicas de Libadwaita. Conserva las fuentes de las aplicaciones.
 La preferencia oscura se activa con:
 
 ```sh
@@ -84,6 +84,26 @@ QT_QPA_PLATFORMTHEME=kde KDE_SESSION_VERSION=5 QT_STYLE_OVERRIDE=Fusion nombre-d
 
 Las aplicaciones con temas propios pueden ignorar parte de esta configuración.
 No se modifica el contenido de páginas web.
+
+## Iconos
+
+GTK y Qt usan Papirus Dark con las carpetas azules predeterminadas. El cursor
+sigue siendo Adwaita de 24 píxeles. La selección está en los archivos de
+configuración; los archivos del tema se instalan por separado.
+
+En Arch, instalar `papirus-icon-theme`. También se puede instalar desde el
+repositorio oficial de Papirus en el usuario, como en esta máquina:
+
+```sh
+make install PREFIX="$HOME/.local" ICON_THEMES='Papirus Papirus-Dark'
+gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+```
+
+Ejecutar `make` desde el código de
+[Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme).
+Se necesitan ambos directorios porque Papirus Dark comparte iconos con Papirus.
+`plain-i3/.xprofile` restaura la selección al iniciar sesión. Las aplicaciones
+Qt abiertas pueden necesitar reiniciarse para mostrar los iconos nuevos.
 
 ## Vivaldi
 

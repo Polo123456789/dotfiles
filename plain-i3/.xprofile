@@ -1,5 +1,7 @@
 #!/bin/bash
 
+gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
+
 # Qt's built-in KDE palette reader supports both Qt 5 and Qt 6, without Plasma.
 export QT_QPA_PLATFORMTHEME=kde
 export KDE_SESSION_VERSION=5

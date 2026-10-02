@@ -4,7 +4,7 @@ ColorScheme=Wombat
 font=Adwaita Sans,11
 
 [Icons]
-Theme=Adwaita
+Theme=Papirus-Dark
 
 [KDE]
 widgetStyle=Fusion
