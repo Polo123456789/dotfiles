@@ -20,7 +20,7 @@ bar {
       separator  $wombat_border
 
       #                  BORDER     BACKGROUND TEXT
-      focused_workspace  $wombat_fg     $wombat_fg      $wombat_bg
+      focused_workspace  $wombat_blue   $wombat_blue    $wombat_bg
       active_workspace   $wombat_border $wombat_surface $wombat_fg
       inactive_workspace $wombat_bg     $wombat_bg      $wombat_muted
       urgent_workspace   $wombat_red    $wombat_red     $wombat_bg

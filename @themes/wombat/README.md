@@ -2,6 +2,9 @@
 
 Paleta tomada de `nvim/.config/nvim/colors/wombat.lua`. El fondo `#171717`
 es el de Kitty, que Neovim usa porque su fondo es transparente.
+La variante del escritorio usa el gris azulado `#3a4046` de Wombat para
+superficies y azul `#88b8f6` con texto oscuro para selecciones. Neovim conserva
+su tema original.
 
 ## Cambiar colores
 
@@ -56,6 +59,7 @@ los formatos y atajos existentes. Cmus queda fuera del tema.
 - Fondos oscuros y texto cálido.
 - Foco blanco cálido y bordes de un píxel.
 - Amarillo para avisos, rojo para errores, azul y verde para estados.
+- Azul para selecciones, escritorio activo, pestañas y detalles del prompt.
 - Tipografía Monocraft en terminal, lanzador, barra y notificaciones.
 - La opacidad existente de Kitty se conserva, así que su fondo puede variar
   ligeramente según lo que haya detrás.

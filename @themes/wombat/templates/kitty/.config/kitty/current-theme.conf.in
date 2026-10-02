@@ -9,7 +9,7 @@ url_color {{blue}}
 active_border_color {{foreground}}
 inactive_border_color {{border}}
 bell_border_color {{red}}
-active_tab_foreground {{foreground}}
+active_tab_foreground {{selection_text}}
 active_tab_background {{selection}}
 inactive_tab_foreground {{muted}}
 inactive_tab_background {{surface}}
