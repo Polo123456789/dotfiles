@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
+
 set -euo pipefail
 IFS=$'\n\t'
 
@@ -31,4 +33,4 @@ total_uploaded=$(qalc -t -s "maxdeci 2" "$total_uploaded to GB" | sed 's/ GB//g'
 
 echo "D:${total_downloaded}G (${current_downloaded}M/s) U:${total_uploaded}G (${current_uploaded}M/s)"
 echo "D:$total_downloaded U:$total_uploaded"
-echo "#95e454"
+echo "$wombat_green"

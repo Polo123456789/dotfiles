@@ -15,8 +15,8 @@ focus_follows_mouse no
 hide_edge_borders smart
 
 
-#                       border      background  text       indicator
-client.focused          "#002b36"   "#EAF9D9"   "#000000"  "#268bd2" 
-client.focused_inactive "#002b36"   "#073642"   "#839496"  "#073642"
-client.unfocused        "#002b36"   "#073642"   "#839496"  "#073642"
-client.urgent           "#002b36"   "#dc322f"   "#fdf6e3"  "#002b36"
+#                       border          background      text          indicator       child_border
+client.focused          $wombat_fg      $wombat_fg      $wombat_bg    $wombat_blue    $wombat_fg
+client.focused_inactive $wombat_border  $wombat_surface $wombat_muted $wombat_border  $wombat_border
+client.unfocused        $wombat_border  $wombat_surface $wombat_muted $wombat_border  $wombat_border
+client.urgent           $wombat_red     $wombat_red     $wombat_bg    $wombat_red     $wombat_red

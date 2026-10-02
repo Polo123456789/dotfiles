@@ -15,14 +15,14 @@ bar {
   workspace_min_width 24
 
   colors {
-      background "#171717"
-      statusline "#93a1a1"
-      separator  "#8DB580"
+      background $wombat_bg
+      statusline $wombat_fg
+      separator  $wombat_border
 
       #                  BORDER     BACKGROUND TEXT
-      focused_workspace  "#002B36"  "#ffffff"  "#002B36"
-      active_workspace   "#6B818C"  "#6B818C"  "#EAF9D9"
-      inactive_workspace "#171717"  "#171717"  "#FFFFFF"
-      urgent_workspace   "#e5786d"  "#e5786d"  "#fdf6e3"
+      focused_workspace  $wombat_fg     $wombat_fg      $wombat_bg
+      active_workspace   $wombat_border $wombat_surface $wombat_fg
+      inactive_workspace $wombat_bg     $wombat_bg      $wombat_muted
+      urgent_workspace   $wombat_red    $wombat_red     $wombat_bg
   }
 }

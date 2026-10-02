@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
+
 acpi_output=$(acpi -b | grep -v "unavailable" | head -n 1)
 battery_percentage=$(echo $acpi_output | grep -E -o '[0-9][0-9]?[0-9]?%')
 battery_status=$(echo $acpi_output | grep -E -o 'Charging|Discharging')
@@ -22,9 +24,9 @@ echo "B:$battery_percentage$battery_status $short_battery_time"
 
 #                                     urgent
 [ ${battery_percentage%?} -le 25 ] && exit 33
-[ ${battery_percentage%?} -le 40 ] && echo "#e5786d" && exit 0
+[ ${battery_percentage%?} -le 40 ] && echo "$wombat_red" && exit 0
 
 # color
-echo "#95e454"
+echo "$wombat_green"
 
 exit 0

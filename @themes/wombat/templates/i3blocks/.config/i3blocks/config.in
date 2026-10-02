@@ -6,7 +6,7 @@ separator_block_width=12
 [dnd]
 command=if [ "$(dunstctl is-paused 2>/dev/null)" = true ]; then printf 'Z\n'; else printf '\n'; fi
 interval=1
-color=#eae788
+color={{yellow}}
 separator=false
 
 [bluetooth]
@@ -16,7 +16,7 @@ interval=5
 [media]
 command=$HOME/.config/i3blocks/scripts/media-player
 interval=2
-color=#e3e0d7
+color={{foreground}}
 
 # [backlight]
 # command=$HOME/.config/i3blocks/scripts/backlight
@@ -53,9 +53,9 @@ interval=5
 [date]
 command=date '+%d %b %T'
 interval=1
-color=#e3e0d7
+color={{foreground}}
 
 [kbmap]
 command=setxkbmap -query | grep layout | awk '{print $2 " " }'
 interval=3
-color=#e3e0d7
+color={{foreground}}

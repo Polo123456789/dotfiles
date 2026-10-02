@@ -1,7 +1,9 @@
 #!/bin/bash
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
+
 backlight=$($HOME/scripts/psbacklight get)
 echo "BL:$backlight%"
 echo "BL:$backlight%"
-echo "#FFFFFF"
+echo "$wombat_fg"
 

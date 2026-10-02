@@ -1,0 +1,19 @@
+{
+  "background": "#171717",
+  "surface": "#32322f",
+  "border": "#444444",
+  "foreground": "#e3e0d7",
+  "muted": "#9c998e",
+  "selection": "#554d4b",
+  "selection_text": "#c3c6ca",
+  "blue": "#88b8f6",
+  "green": "#cae982",
+  "yellow": "#eae788",
+  "red": "#e5786d",
+  "magenta": "#d787ff",
+  "cyan": "#5fafd7",
+  "bright_red": "#ff5f55",
+  "bright_green": "#95e454",
+  "cream": "#eadead",
+  "white": "#ffffd7"
+}

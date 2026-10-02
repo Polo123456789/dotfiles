@@ -1,11 +1,13 @@
 #!/bin/bash
 
+source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
+
 device=$(ip route | grep default | awk '{print $5}' | head -n1)
 
 if [[ -z "$device" ]]; then
     echo "No Network"
     echo "down"
-    echo "#9c998e"
+    echo "$wombat_muted"
     exit 0
 fi
 
@@ -13,5 +15,5 @@ ip=$(ip addr show $device | grep -Po 'inet \K[\d.]+')
 
 echo "$device:$ip"
 echo $ip
-echo "#95e454"
+echo "$wombat_green"
 exit 0
