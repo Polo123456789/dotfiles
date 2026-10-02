@@ -27,7 +27,7 @@ ajustes de comportamiento que estaban activos, con colores en un archivo aparte.
 ## Instalar y recargar
 
 Paquetes: `shared-i3`, `plain-i3`, `i3blocks`, `kitty`, `rofi`, `dunst`,
-`tmux` y `synth-shell`.
+`tmux`, `synth-shell`, `gtk` y `qt`.
 `plain-i3` declara Rofi y Dunst como dependencias para el comando `dotfiles stow`.
 Los archivos locales existentes deben incorporarse o respaldarse antes de
 instalar sus enlaces con Stow.
@@ -53,6 +53,37 @@ source ~/.config/synth-shell/synth-shell-prompt.sh
 Tmux carga `wombat.conf` después de sus plugins. La paleta cambia los colores
 de la barra, selecciones, mensajes, paneles y ventanas emergentes, conservando
 los formatos y atajos existentes. Cmus queda fuera del tema.
+
+## Aplicaciones GTK y Qt
+
+`gtk` añade colores a Adwaita en GTK 3 y GTK 4, incluyendo las variables
+públicas de Libadwaita. Conserva los iconos y las fuentes de las aplicaciones.
+La preferencia oscura se activa con:
+
+```sh
+gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark
+gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+```
+
+Qt 5 y Qt 6 usan su lector nativo de paletas KDE y el estilo Fusion, con
+`~/.config/kdeglobals` generado desde los mismos colores. No requiere Plasma,
+qt5ct, qt6ct ni Kvantum. `plain-i3/.xprofile` exporta
+`QT_QPA_PLATFORMTHEME=kde`, `QT_STYLE_OVERRIDE=Fusion` y `KDE_SESSION_VERSION=5`
+al iniciar sesión, y los transmite a D-Bus y systemd. La última variable permite
+que Qt lea el formato moderno de `kdeglobals`; el escritorio sigue siendo i3.
+Se comprobó esta vía en Qt 5 y Qt 6: el módulo GTK3 de Qt 5 no heredaba la paleta.
+
+Las aplicaciones ya abiertas pueden requerir reiniciarse para leer el CSS.
+Las aplicaciones Qt lanzadas desde procesos de una sesión anterior no heredan
+las nuevas variables; abrir una nueva sesión de i3 las aplica de forma global.
+Para probar una aplicación Qt antes de cerrar sesión:
+
+```sh
+QT_QPA_PLATFORMTHEME=kde KDE_SESSION_VERSION=5 QT_STYLE_OVERRIDE=Fusion nombre-de-la-aplicacion
+```
+
+Las aplicaciones con temas propios pueden ignorar parte de esta configuración.
+No se modifica el contenido de páginas web ni el tema de Vivaldi.
 
 ## Criterios visuales
 

@@ -16,6 +16,10 @@ for name, color in palette.items():
     if not re.fullmatch(r"#[0-9a-f]{6}", color):
         raise SystemExit(f"Invalid color for {name}: {color}")
 
+# KDE/Qt palettes store RGB triplets instead of hex colors.
+palette.update({name + "_rgb": ",".join(str(int(color[i:i + 2], 16)) for i in (1, 3, 5))
+                for name, color in list(palette.items())})
+
 # Resolve every template before writing, so a missing color never gives a partial update.
 rendered = []
 for template in sorted((theme_dir / "templates").rglob("*.in")):

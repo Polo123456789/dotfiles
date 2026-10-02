@@ -2,3 +2,5 @@ shared-i3
 i3blocks
 rofi
 dunst
+gtk
+qt
