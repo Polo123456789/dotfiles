@@ -83,7 +83,20 @@ QT_QPA_PLATFORMTHEME=kde KDE_SESSION_VERSION=5 QT_STYLE_OVERRIDE=Fusion nombre-d
 ```
 
 Las aplicaciones con temas propios pueden ignorar parte de esta configuración.
-No se modifica el contenido de páginas web ni el tema de Vivaldi.
+No se modifica el contenido de páginas web.
+
+## Vivaldi
+
+El generador también produce `vivaldi/Wombat-Blue.zip`, un tema importable con
+fondo y barras oscuros, texto cálido y resaltados azules. Usa colores
+fijos, sin tomarlos de la página abierta. No incluye fondos ni iconos externos.
+
+En Vivaldi: Ajustes > Temas > Biblioteca > Abrir tema. Seleccionar el ZIP,
+revisar la vista previa y pulsar Instalar. Si está activo el cambio de tema
+según el sistema o un horario, seleccionar Wombat Blue también en ese horario.
+
+Para actualizar la paleta, ejecutar el generador y volver a importar el ZIP.
+La importación es manual; el generador no modifica el perfil del navegador.
 
 ## Criterios visuales
 

@@ -2,9 +2,11 @@
 """Render Wombat color files. Run with --check to detect stale generated files."""
 
 import argparse
+import io
 import json
 from pathlib import Path
 import re
+import zipfile
 
 theme_dir = Path(__file__).resolve().parent
 repo = theme_dir.parent.parent
@@ -27,16 +29,29 @@ for template in sorted((theme_dir / "templates").rglob("*.in")):
     content = re.sub(r"\{\{([a-z_]+)\}\}", lambda m: palette[m[1]], template.read_text())
     if "{{" in content or "}}" in content:
         raise SystemExit(f"Unresolved template expression: {template}")
-    rendered.append((target, content))
+    rendered.append((target, content.encode()))
+
+# Vivaldi imports a ZIP with settings.json at its root. Keep it reproducible.
+vivaldi_settings = theme_dir / "vivaldi/settings.json"
+for target, content in list(rendered):
+    if target == vivaldi_settings:
+        json.loads(content)
+        archive = io.BytesIO()
+        member = zipfile.ZipInfo("settings.json", date_time=(1980, 1, 1, 0, 0, 0))
+        member.compress_type = zipfile.ZIP_DEFLATED
+        member.external_attr = 0o644 << 16
+        with zipfile.ZipFile(archive, "w") as bundle:
+            bundle.writestr(member, content)
+        rendered.append((theme_dir / "vivaldi/Wombat-Blue.zip", archive.getvalue()))
 
 stale = []
 for target, content in rendered:
-    if target.exists() and target.read_text() == content:
+    if target.exists() and target.read_bytes() == content:
         continue
     stale.append(str(target.relative_to(repo)))
     if not args.check:
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(content)
+        target.write_bytes(content)
 
 if args.check and stale:
     raise SystemExit("Outdated Wombat files:\n" + "\n".join(stale))
