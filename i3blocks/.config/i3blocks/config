@@ -1,5 +1,13 @@
 # vim:ft=dosini
 
+separator_block_width=12
+
+[dnd]
+command=if [ "$(dunstctl is-paused 2>/dev/null)" = true ]; then printf 'Z\n'; else printf '\n'; fi
+interval=1
+color=#E5C07B
+separator=false
+
 [bluetooth]
 command=$HOME/.config/i3blocks/scripts/bluetooth
 interval=5

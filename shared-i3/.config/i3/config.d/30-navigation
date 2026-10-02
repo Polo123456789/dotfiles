@@ -12,8 +12,12 @@ bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Escape workspace next
+bindsym $mod+Shift+Escape workspace prev
+bindsym $mod+Tab workspace back_and_forth
+
+bindsym $mod+grave exec --no-startup-id dunstctl history-pop
+bindsym $mod+Shift+grave exec --no-startup-id dunstctl set-paused toggle
 
 bindsym $mod+Ctrl+a scratchpad show
 

@@ -8,6 +8,8 @@ bar {
   font pango:Monocraft 8
   separator_symbol " "
   status_command i3blocks
+  tray_output HDMI-A-0
+  tray_output eDP
   tray_output primary
   strip_workspace_numbers yes
   workspace_min_width 24
