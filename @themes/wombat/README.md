@@ -23,7 +23,8 @@ ajustes de comportamiento que estaban activos, con colores en un archivo aparte.
 
 ## Instalar y recargar
 
-Paquetes: `shared-i3`, `plain-i3`, `i3blocks`, `kitty`, `rofi` y `dunst`.
+Paquetes: `shared-i3`, `plain-i3`, `i3blocks`, `kitty`, `rofi`, `dunst`,
+`tmux` y `synth-shell`.
 `plain-i3` declara Rofi y Dunst como dependencias para el comando `dotfiles stow`.
 Los archivos locales existentes deben incorporarse o respaldarse antes de
 instalar sus enlaces con Stow.
@@ -33,10 +34,22 @@ i3 -C -c ~/.config/i3/config
 i3-msg restart
 dunstctl reload
 pkill -USR1 -x kitty
+tmux source-file ~/.config/tmux/wombat.conf
 ```
 
 Rofi lee el tema al abrirse. Reiniciar i3 conserva las ventanas y reinicia
 i3blocks, que no vuelve a leer su configuración con un simple `reload` de i3.
+
+Synth Shell usa los colores ANSI de Kitty. Las terminales nuevas leen el prompt
+actualizado. Para actualizar una terminal Bash ya abierta:
+
+```sh
+source ~/.config/synth-shell/synth-shell-prompt.sh
+```
+
+Tmux carga `wombat.conf` después de sus plugins. La paleta cambia los colores
+de la barra, selecciones, mensajes, paneles y ventanas emergentes, conservando
+los formatos y atajos existentes. Cmus queda fuera del tema.
 
 ## Criterios visuales
 

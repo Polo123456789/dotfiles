@@ -93,6 +93,9 @@ correr otros hooks.
 Dependencias
 ------------
 
+La paleta compartida de Wombat y sus instrucciones de generación y recarga
+están en [@themes/wombat/README.md](@themes/wombat/README.md).
+
 Los paquetes pueden tener dependencias, las cuales se instalaran antes de el
 paquete en si. Estas se especifican en el archivo `paquete/@depends`, un
 paquete por linea.
