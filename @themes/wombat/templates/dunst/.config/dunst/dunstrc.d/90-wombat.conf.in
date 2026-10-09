@@ -16,6 +16,6 @@ foreground = "{{foreground}}"
 frame_color = "{{border}}"
 
 [urgency_critical]
-background = "{{background}}"
-foreground = "{{foreground}}"
+background = "{{red}}"
+foreground = "{{background}}"
 frame_color = "{{red}}"
