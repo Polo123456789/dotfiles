@@ -165,3 +165,12 @@ Pruebas del instalador, con hogares temporales y sin modificar la sesión:
 ```sh
 PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s @tests -v
 ```
+
+### Pomodoro en i3blocks
+
+El indicador `P 25:00` permite iniciar o pausar con clic izquierdo, iniciar un
+descanso de 5 minutos con clic central y reiniciar con clic derecho.
+Al terminar muestra una notificación persistente mediante `notify-send`.
+El estado se conserva en `~/.local/state/i3blocks/pomodoro.json`, incluso al
+recargar i3. Requiere Python 3, libnotify y un servidor de notificaciones.
+i3blocks comprueba el vencimiento cada segundo mientras está ejecutándose.

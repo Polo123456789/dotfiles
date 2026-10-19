@@ -50,6 +50,10 @@ interval=5
 command=$HOME/.config/i3blocks/scripts/memory
 interval=5
 
+[pomodoro]
+command=$HOME/.config/i3blocks/scripts/pomodoro
+interval=1
+
 [date]
 command=date '+%d %b %T'
 interval=1

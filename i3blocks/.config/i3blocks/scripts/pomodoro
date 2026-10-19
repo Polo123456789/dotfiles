@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""Pomodoro for i3blocks: left start/pause, middle break, right reset."""
+import fcntl
+import json
+import math
+import os
+from pathlib import Path
+import subprocess
+import time
+
+# Duraciones en minutos.
+WORK_MINUTES = 25
+BREAK_MINUTES = 5
+
+state_dir = Path(os.environ.get('XDG_STATE_HOME', Path.home() / '.local/state')) / 'i3blocks'
+state_dir.mkdir(parents=True, exist_ok=True)
+state_file = state_dir / 'pomodoro.json'
+with (state_dir / 'pomodoro.lock').open('w') as lock:
+    fcntl.flock(lock, fcntl.LOCK_EX)
+    try:
+        state = json.loads(state_file.read_text())
+    except (FileNotFoundError, ValueError):
+        state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
+    now = time.time()
+    if state['end'] is not None and state['end'] <= now:
+        message = ('Terminó el pomodoro. Hora de descansar.' if state['mode'] == 'work'
+                   else 'Terminó el descanso. Puedes iniciar otro pomodoro.')
+        result = subprocess.run(['notify-send', '--app-name=Pomodoro', '--urgency=critical',
+                                 '--expire-time=0', 'Pomodoro', message], check=False)
+        if result.returncode == 0:
+            state['end'] = None
+            state['remaining'] = 0
+    button = os.environ.get('BLOCK_BUTTON')
+    if button == '3':
+        state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
+    elif button == '2':
+        state = {'mode': 'break', 'remaining': BREAK_MINUTES * 60, 'end': now + BREAK_MINUTES * 60}
+    elif button == '1':
+        if state['end'] is not None:
+            state['remaining'] = max(0, math.ceil(state['end'] - now))
+            state['end'] = None
+        else:
+            if state['remaining'] == 0:
+                state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
+            state['end'] = now + state['remaining']
+    temporary = state_file.with_suffix('.tmp')
+    temporary.write_text(json.dumps(state))
+    temporary.replace(state_file)
+    remaining = (max(0, math.ceil(state['end'] - now)) if state['end'] is not None
+                 else state['remaining'])
+    prefix = 'P' if state['mode'] == 'work' else 'D'
+    marker = ' ⏸' if state['end'] is None and 0 < remaining < (WORK_MINUTES * 60 if prefix == 'P' else BREAK_MINUTES * 60) else ''
+    label = f'{prefix} {remaining // 60:02}:{remaining % 60:02}{marker}'
+    print(label)
+    print(label)
+    print('#eae788' if state['end'] is not None else '#9c998e')
