@@ -3,34 +3,18 @@
 source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
 
 set -euo pipefail
-IFS=$'\n\t'
 
-last_values_file="/tmp/bandwidth_last_values.txt"
+# Totales acumulados de las interfaces, sin el tráfico local de loopback.
+totals=$(awk -F ':' '
+    /:/ {
+        interface = $1
+        gsub(/[[:space:]]/, "", interface)
+        if (interface == "lo") next
+        split($2, counters, " ")
+        downloaded += counters[1]
+        uploaded += counters[9]
+    }
+    END { printf "D:%.2fG U:%.2fG", downloaded / 1000000000, uploaded / 1000000000 }
+' /proc/net/dev)
 
-
-stats=$(netstat -ien)
-
-downloaded=$(echo "$stats" | grep 'RX packets' | awk '{print $5}' | tr '\n' '+' | sed 's/+$//g')
-uploaded=$(echo "$stats" | grep 'TX packets' | awk '{print $5}' | tr '\n' '+' | sed 's/+$//g')
-
-total_downloaded=$(qalc -t -s "maxdeci 2" "$downloaded")
-total_uploaded=$(qalc -t -s "maxdeci 2" "$uploaded")
-
-last_downloaded=0
-last_uploaded=0
-
-if [[ -f "$last_values_file" ]]; then
-    read last_downloaded last_uploaded < "$last_values_file"
-fi
-
-echo -e "$total_downloaded\\t$total_uploaded" > "$last_values_file"
-
-current_downloaded=$(qalc -t -s "maxdeci 2" "($total_downloaded - $last_downloaded)/5 to MB" | sed 's/ MB//g')
-current_uploaded=$(qalc -t -s "maxdeci 2" "($total_uploaded - $last_uploaded)/5 to MB" | sed 's/ MB//g')
-
-total_downloaded=$(qalc -t -s "maxdeci 2" "$total_downloaded to GB" | sed 's/ GB//g')
-total_uploaded=$(qalc -t -s "maxdeci 2" "$total_uploaded to GB" | sed 's/ GB//g')
-
-echo "D:${total_downloaded}G (${current_downloaded}M/s) U:${total_uploaded}G (${current_uploaded}M/s)"
-echo "D:$total_downloaded U:$total_uploaded"
-echo "$wombat_green"
+printf '%s\n%s\n%s\n' "$totals" "$totals" "$wombat_green"

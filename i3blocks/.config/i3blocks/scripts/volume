@@ -6,8 +6,8 @@ muted=$(pactl get-sink-mute @DEFAULT_SINK@ | awk '$1 == "Mute:" { print $2 }')
 volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '$1 == "Volume:" { print $5 }')
 
 if [ "$muted" = "yes" ]; then
-    echo "V:Mute"
-    echo "V:Mute"
+    echo "V:M"
+    echo "V:M"
     echo "$wombat_red"
     exit 0
 fi

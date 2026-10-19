@@ -50,7 +50,7 @@ with (state_dir / 'pomodoro.lock').open('w') as lock:
                  else state['remaining'])
     prefix = 'P' if state['mode'] == 'work' else 'D'
     marker = ' ⏸' if state['end'] is None and 0 < remaining < (WORK_MINUTES * 60 if prefix == 'P' else BREAK_MINUTES * 60) else ''
-    label = f'{prefix} {remaining // 60:02}:{remaining % 60:02}{marker}'
+    label = f'{remaining // 60:02}:{remaining % 60:02}{marker}'
     print(label)
     print(label)
     print('#eae788' if state['end'] is not None else '#9c998e')
