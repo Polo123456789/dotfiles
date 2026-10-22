@@ -168,9 +168,19 @@ PYTHONDONTWRITEBYTECODE=1 python -m unittest discover -s @tests -v
 
 ### Pomodoro en i3blocks
 
-El indicador `P 25:00` permite iniciar o pausar con clic izquierdo, iniciar un
-descanso de 5 minutos con clic central y reiniciar con clic derecho.
-Al terminar muestra una notificación persistente mediante `notify-send`.
+El indicador muestra solo el tiempo. Las duraciones se configuran al inicio de
+`i3blocks/.config/i3blocks/scripts/pomodoro`.
+
+- Clic izquierdo: inicia un pomodoro de 45 minutos; repetir pausa o reanuda.
+- Clic derecho: inicia un cronómetro desde cero; repetir pausa o reanuda.
+- El clic del otro modo se ignora mientras haya una sesión corriendo o pausada.
+- Clic central estando pausado: reinicia el contador y lo deja inactivo.
+- Clic central estando inactivo o terminado: inicia un descanso de 5 minutos.
+- Clic central mientras corre: no hace nada. El descanso se pausa o reanuda con
+  clic izquierdo.
+
+Al terminar el pomodoro o el descanso muestra una notificación persistente
+mediante `notify-send`. El cronómetro cuenta hacia arriba sin límite prefijado.
 El estado se conserva en `~/.local/state/i3blocks/pomodoro.json`, incluso al
 recargar i3. Requiere Python 3, libnotify y un servidor de notificaciones.
 i3blocks comprueba el vencimiento cada segundo mientras está ejecutándose.

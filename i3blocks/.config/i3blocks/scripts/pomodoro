@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Pomodoro for i3blocks: left start/pause, middle break, right reset."""
+"""i3blocks: left Pomodoro, right stopwatch, middle reset/break."""
 import fcntl
 import json
 import math
@@ -9,48 +9,80 @@ import subprocess
 import time
 
 # Duraciones en minutos.
-WORK_MINUTES = 25
+WORK_MINUTES = 45
 BREAK_MINUTES = 5
+
+
+def fresh(mode='work'):
+    seconds = {'work': WORK_MINUTES * 60, 'break': BREAK_MINUTES * 60, 'flow': 0}
+    return {'version': 2, 'mode': mode, 'status': 'idle',
+            'seconds': seconds[mode], 'started': None}
+
+
+def value_at(state, now):
+    if state['status'] != 'running':
+        return state['seconds']
+    elapsed = max(0, now - state['started'])
+    if state['mode'] == 'flow':
+        return state['seconds'] + elapsed
+    return max(0, state['seconds'] - elapsed)
+
 
 state_dir = Path(os.environ.get('XDG_STATE_HOME', Path.home() / '.local/state')) / 'i3blocks'
 state_dir.mkdir(parents=True, exist_ok=True)
 state_file = state_dir / 'pomodoro.json'
 with (state_dir / 'pomodoro.lock').open('w') as lock:
     fcntl.flock(lock, fcntl.LOCK_EX)
+    now = time.time()
     try:
         state = json.loads(state_file.read_text())
     except (FileNotFoundError, ValueError):
-        state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
-    now = time.time()
-    if state['end'] is not None and state['end'] <= now:
+        state = fresh()
+    # Conserva sesiones anteriores que estén corriendo o pausadas.
+    if state.get('version') != 2:
+        old = state
+        state = fresh(old['mode'])
+        if old['end'] is not None:
+            state.update(status='running', seconds=max(0, old['end'] - now), started=now)
+        elif old['remaining'] == 0:
+            state.update(status='finished', seconds=0)
+        elif old['remaining'] != (25 * 60 if old['mode'] == 'work' else BREAK_MINUTES * 60):
+            state.update(status='paused', seconds=old['remaining'])
+
+    if state['status'] == 'running' and state['mode'] != 'flow' and value_at(state, now) == 0:
         message = ('Terminó el pomodoro. Hora de descansar.' if state['mode'] == 'work'
-                   else 'Terminó el descanso. Puedes iniciar otro pomodoro.')
+                   else 'Terminó el descanso. Puedes iniciar otra sesión.')
         result = subprocess.run(['notify-send', '--app-name=Pomodoro', '--urgency=critical',
                                  '--expire-time=0', 'Pomodoro', message], check=False)
         if result.returncode == 0:
-            state['end'] = None
-            state['remaining'] = 0
+            state.update(status='finished', seconds=0, started=None)
+
     button = os.environ.get('BLOCK_BUTTON')
-    if button == '3':
-        state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
-    elif button == '2':
-        state = {'mode': 'break', 'remaining': BREAK_MINUTES * 60, 'end': now + BREAK_MINUTES * 60}
-    elif button == '1':
-        if state['end'] is not None:
-            state['remaining'] = max(0, math.ceil(state['end'] - now))
-            state['end'] = None
-        else:
-            if state['remaining'] == 0:
-                state = {'mode': 'work', 'remaining': WORK_MINUTES * 60, 'end': None}
-            state['end'] = now + state['remaining']
+    if button == '2':
+        if state['status'] == 'paused':
+            state = fresh(state['mode'])
+        elif state['status'] in ('idle', 'finished'):
+            state = fresh('break')
+            state.update(status='running', started=now)
+    elif button in ('1', '3'):
+        mode = 'work' if button == '1' else 'flow'
+        # El clic izquierdo también pausa y reanuda el descanso.
+        same_mode = state['mode'] == mode or (button == '1' and state['mode'] == 'break')
+        if same_mode and state['status'] == 'running':
+            state.update(seconds=value_at(state, now), status='paused', started=None)
+        elif same_mode and state['status'] == 'paused':
+            state.update(status='running', started=now)
+        elif state['status'] in ('idle', 'finished'):
+            state = fresh(mode)
+            state.update(status='running', started=now)
+
     temporary = state_file.with_suffix('.tmp')
     temporary.write_text(json.dumps(state))
     temporary.replace(state_file)
-    remaining = (max(0, math.ceil(state['end'] - now)) if state['end'] is not None
-                 else state['remaining'])
-    prefix = 'P' if state['mode'] == 'work' else 'D'
-    marker = ' ⏸' if state['end'] is None and 0 < remaining < (WORK_MINUTES * 60 if prefix == 'P' else BREAK_MINUTES * 60) else ''
-    label = f'{remaining // 60:02}:{remaining % 60:02}{marker}'
+    seconds = value_at(state, now)
+    seconds = math.floor(seconds) if state['mode'] == 'flow' else math.ceil(seconds)
+    marker = ' ⏸' if state['status'] == 'paused' else ''
+    label = f'{seconds // 60:02}:{seconds % 60:02}{marker}'
     print(label)
     print(label)
-    print('#eae788' if state['end'] is not None else '#9c998e')
+    print('#eae788' if state['status'] == 'running' else '#9c998e')
