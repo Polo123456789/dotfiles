@@ -8,7 +8,7 @@ if [ "$bluetooth_status" = "yes" ]; then
     paired_devices=$(bluetoothctl devices Paired | grep Device | awk '{print $2}')
     connected_devices=0
     for device in $paired_devices; do
-        connected=$(bluetoothctl info $device | grep Connected | awk '{print $2}')
+        connected=$(bluetoothctl info "$device" | awk '$1 == "Connected:" {print $2}')
         if [ "$connected" = "yes" ]; then
             connected_devices=$((connected_devices+1))
         fi
