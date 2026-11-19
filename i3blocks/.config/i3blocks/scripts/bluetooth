@@ -3,14 +3,24 @@
 source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
 
 bluetooth_status=$(bluetoothctl show | grep Powered | awk '{print $2}')
+details=""
 
 if [ "$bluetooth_status" = "yes" ]; then
     paired_devices=$(bluetoothctl devices Paired | grep Device | awk '{print $2}')
     connected_devices=0
     for device in $paired_devices; do
-        connected=$(bluetoothctl info "$device" | awk '$1 == "Connected:" {print $2}')
+        device_info=$(bluetoothctl info "$device")
+        connected=$(awk '$1 == "Connected:" {print $2}' <<< "$device_info")
         if [ "$connected" = "yes" ]; then
             connected_devices=$((connected_devices+1))
+            if [[ ${BLOCK_BUTTON:-} == 1 ]]; then
+                name=$(sed -n 's/^[[:space:]]*Alias: //p' <<< "$device_info")
+                battery=$(awk '$1 == "Battery" && $2 == "Percentage:" {gsub(/[()]/, "", $4); print $4}' <<< "$device_info")
+                details+="${name:-$device}"
+                details+=" — ${battery:+Batería: $battery%}"
+                [[ -n "$battery" ]] || details+="Batería no disponible"
+                details+=$'\n'
+            fi
         fi
     done
 
@@ -27,4 +37,15 @@ else
     echo "B"
     echo "B"
     echo "$wombat_muted"
+fi
+
+if [[ ${BLOCK_BUTTON:-} == 1 ]]; then
+    if [[ "$bluetooth_status" != yes ]]; then
+        details="Bluetooth apagado"
+    elif [[ -z "$details" ]]; then
+        details="Sin dispositivos conectados"
+    fi
+    details=$(sed 's/\&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' <<< "${details%$'\n'}")
+    notify-send --app-name=Bluetooth --icon=bluetooth --expire-time=8000 \
+        --hint=string:x-dunst-stack-tag:bluetooth "Bluetooth" "$details"
 fi

@@ -2,18 +2,46 @@
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
 
-device=$(ip route | grep default | awk '{print $5}' | head -n1)
+device=$(ip -4 route show default | awk 'NR == 1 {print $5}')
 
 if [[ -z "$device" ]]; then
     echo "No Network"
     echo "down"
     echo "$wombat_muted"
-    exit 0
+else
+    address=$(ip -4 -o addr show dev "$device" scope global | awk 'NR == 1 {split($4, parts, "/"); print parts[1]}')
+    echo "$device:$address"
+    echo "$address"
+    echo "$wombat_green"
 fi
 
-ip=$(ip addr show $device | grep -Po 'inet \K[\d.]+')
+if [[ ${BLOCK_BUTTON:-} == 1 ]]; then
+    if [[ -n "$device" ]]; then
+        connection=$(nmcli -g GENERAL.CONNECTION device show "$device" 2>/dev/null)
+        type=$(nmcli -g GENERAL.TYPE device show "$device" 2>/dev/null)
+        printf -v details 'Conexión: %s\nInterfaz: %s\nIP: %s' "${connection:-$device}" "$device" "$address"
+        if [[ "$type" == wifi ]]; then
+            signal=$(nmcli -t --escape no -f IN-USE,SIGNAL device wifi list ifname "$device" --rescan no 2>/dev/null | awk -F: '$1 == "*" {print $2; exit}')
+            [[ -z "$signal" ]] || details+=$'\n'"Señal Wi-Fi: $signal%"
+        fi
+    else
+        details="Sin conexión de red"
+    fi
 
-echo "$device:$ip"
-echo $ip
-echo "$wombat_green"
-exit 0
+    # Conserva los totales del antiguo bloque, sin el tráfico local de loopback.
+    totals=$(awk -F ':' '
+        /:/ {
+            interface = $1
+            gsub(/[[:space:]]/, "", interface)
+            if (interface == "lo") next
+            split($2, counters, " ")
+            downloaded += counters[1]
+            uploaded += counters[9]
+        }
+        END { printf "U: %.2f GB\nD: %.2f GB", uploaded / 1000000000, downloaded / 1000000000 }
+    ' /proc/net/dev)
+    details+=$'\n\nTráfico:\n'"$totals"
+    details=$(sed 's/\&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g' <<< "$details")
+    notify-send --app-name=Red --icon=network-workgroup --expire-time=10000 \
+        --hint=string:x-dunst-stack-tag:network "Red" "$details"
+fi
