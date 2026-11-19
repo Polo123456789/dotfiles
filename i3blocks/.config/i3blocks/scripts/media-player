@@ -2,6 +2,10 @@
 
 source "${XDG_CONFIG_HOME:-$HOME/.config}/i3blocks/wombat.sh"
 
+if [[ ${BLOCK_BUTTON:-} == 1 ]]; then
+    playerctl play-pause 2>/dev/null
+fi
+
 state=$(playerctl status 2> /dev/null)
 
 if [[ $state = "Playing" ]]; then
